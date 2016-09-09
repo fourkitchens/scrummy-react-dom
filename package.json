@@ -1,7 +1,35 @@
 {
-  "name": "scrummy",
-  "description": "A Scrum planning and estimation game from Four Kitchens",
+  "name": "scrummy-react-dom",
+  "description": "A react frontend for the Scrum planning and estimation game from Four Kitchens",
   "version": "2.0.0",
+  "author": {
+    "name": "Four Kitchens",
+    "id": 348885,
+    "url": "https://github.com/fourkitchens"
+  },
+  "contributors": [
+    {
+      "name": "Taylor",
+      "id": 1486573,
+      "email": "taylor@fourkitchens.com",
+      "url": "https://github.com/tsmith512"
+    },
+    {
+      "name": "Flip",
+      "id": 1306968,
+      "email": "flip@fourkitchens.com",
+      "url": "https://github.com/flipactual"
+    },
+    {
+      "name": "Luke",
+      "id": 1127238,
+      "email": "luke@fourkitchens.com",
+      "url": "https://github.com/infiniteluke"
+    }
+  ],
+  "description": "♠️♣️♥️♦️",
+  "private": true,
+  "license": "MIT",
   "engines": {
     "node": ">=6.0.0"
   },
@@ -9,7 +37,8 @@
   "scripts": {
     "build": "node_modules/.bin/webpack --",
     "start": "node_modules/.bin/webpack-dev-server --",
-    "lint": "node_modules/.bin/eslint ./**/*.js --"
+    "lint": "node_modules/.bin/eslint ./**/*.js --",
+    "write-readme": "./node_modules/.bin/emdaer"
   },
   "repository": {
     "type": "git",
@@ -32,6 +61,7 @@
     "babel-preset-stage-3": "^6.5.0",
     "breakpoint-sass": "^2.7.0",
     "css-loader": "^0.23.1",
+    "emdaer": "^0.3.2",
     "eslint": "^2.11.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",

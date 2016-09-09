@@ -1,0 +1,24 @@
+- title: true
+- shields:
+    style: 'flat-square'
+    shields:
+      - alt: 'Four Kitchens'
+        image: 'badge/4K-Four%20Kitchens-35AA4E.svg'
+        link: 'https://fourkitchens.com/'
+      - alt: 'Travis'
+        image: 'travis/fourkitchens/scrummy-react-dom.svg'
+        link: 'https://travis-ci.org/fourkitchens/scrummy-react-dom/'
+      - alt: Codecov
+        image: 'codecov/c/github/fourkitchens/scrummy-react-dom.svg'
+        link: 'https://codecov.io/gh/fourkitchens/scrummy-react-dom'
+      - alt: Code Climate
+        image: 'codeclimate/github/fourkitchens/scrummy-react-dom.svg'
+        link: 'https://codeclimate.com/github/fourkitchens/scrummy-react-dom'
+      - alt: David Dependency Management
+        image: 'david/fourkitchens/scrummy-react-dom.svg'
+        link: 'https://david-dm.org/fourkitchens/scrummy-react-dom'
+      - alt: David Dependency Management (dev)
+        image: 'david/dev/fourkitchens/scrummy-react-dom.svg'
+        link: 'https://david-dm.org/dev/fourkitchens/scrummy-react-dom#info=devDependencies&view=table'
+- contributors: true
+- license: true
