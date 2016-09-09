@@ -1,0 +1,10 @@
+@import "~breakpoint-sass/stylesheets/breakpoint";
+@import "~singularitygs/stylesheets/singularitygs";
+@import "~sass-toolkit/stylesheets/toolkit/kickstart";
+
+main {
+  display: flex;
+  @include breakpoint(500px) {
+    color: red;
+  }
+}

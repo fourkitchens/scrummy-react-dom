@@ -1,0 +1,53 @@
+{
+  "name": "scrummy",
+  "description": "A Scrum planning and estimation game from Four Kitchens",
+  "version": "2.0.0",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "build": "node_modules/.bin/webpack --",
+    "start": "node_modules/.bin/webpack-dev-server --",
+    "lint": "node_modules/.bin/eslint ./**/*.js --"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsmith512/scrummy.git"
+  },
+  "subdomain": "playscrummy",
+  "domains": [
+    "playscrummy.com"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "babel-preset-stage-3": "^6.5.0",
+    "breakpoint-sass": "^2.7.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.11.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.3.0",
+    "eslint-plugin-react": "^5.1.1",
+    "html-webpack-plugin": "^2.19.0",
+    "node-sass": "^3.8.0",
+    "postcss-loader": "^0.9.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "resolve-url-loader": "^1.4.4",
+    "sass-loader": "^4.0.0",
+    "sass-toolkit": "^2.10.0",
+    "singularitygs": "^1.7.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
