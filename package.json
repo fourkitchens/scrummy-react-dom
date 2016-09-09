@@ -1,6 +1,6 @@
 {
   "name": "scrummy-react-dom",
-  "description": "A react frontend for the Scrum planning and estimation game from Four Kitchens",
+  "description": "♠️♣️♥️♦️",
   "version": "2.0.0",
   "author": {
     "name": "Four Kitchens",
@@ -27,7 +27,6 @@
       "url": "https://github.com/infiniteluke"
     }
   ],
-  "description": "♠️♣️♥️♦️",
   "private": true,
   "license": "MIT",
   "engines": {
@@ -37,18 +36,23 @@
   "scripts": {
     "build": "node_modules/.bin/webpack --",
     "start": "node_modules/.bin/webpack-dev-server --",
-    "lint": "node_modules/.bin/eslint ./**/*.js --",
+    "view-coverage": "./node_modules/.bin/nyc report --reporter=html ./node_modules/.bin/ava && open ./coverage/index.html",
+    "lint-code": "./node_modules/.bin/eslint .",
+    "lint-writing": "./node_modules/.bin/write-good *.md && ./node_modules/.bin/alex",
+    "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
+    "quality": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/codeclimate-test-reporter",
     "write-readme": "./node_modules/.bin/emdaer"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tsmith512/scrummy.git"
+    "url": "https://github.com/fourkitchens/scrummy-react-dom"
   },
   "subdomain": "playscrummy",
   "domains": [
     "playscrummy.com"
   ],
   "devDependencies": {
+    "alex": "^3.1.0",
     "autoprefixer": "^6.3.7",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.1",
@@ -60,6 +64,8 @@
     "babel-preset-stage-2": "^6.5.0",
     "babel-preset-stage-3": "^6.5.0",
     "breakpoint-sass": "^2.7.0",
+    "codeclimate-test-reporter": "^0.3.3",
+    "codecov": "^1.0.1",
     "css-loader": "^0.23.1",
     "emdaer": "^0.3.2",
     "eslint": "^2.11.1",
@@ -67,6 +73,7 @@
     "eslint-plugin-import": "^1.8.1",
     "eslint-plugin-jsx-a11y": "^1.3.0",
     "eslint-plugin-react": "^5.1.1",
+    "ghooks": "^1.3.2",
     "html-webpack-plugin": "^2.19.0",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
@@ -78,6 +85,7 @@
     "singularitygs": "^1.7.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "write-good": "^0.9.1"
   }
 }

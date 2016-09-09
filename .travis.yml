@@ -1,0 +1,12 @@
+language: node_js
+node_js: 6
+install: npm i
+script:
+- npm run lint-code
+- npm run lint-writing
+after_success:
+- npm run coverage
+- npm run quality
+addons:
+  code_climate:
+    repo_token: 71f2cd6d566ae00dfc698f68ec3f239b4db7feecf3306465a9aae07554132624
