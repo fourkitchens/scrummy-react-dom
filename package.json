@@ -34,14 +34,30 @@
   },
   "dependencies": {},
   "scripts": {
-    "build": "node_modules/.bin/webpack --",
-    "start": "node_modules/.bin/webpack-dev-server --",
-    "view-coverage": "./node_modules/.bin/nyc report --reporter=html ./node_modules/.bin/ava && open ./coverage/index.html",
-    "lint-code": "./node_modules/.bin/eslint .",
-    "lint-writing": "./node_modules/.bin/write-good *.md && ./node_modules/.bin/alex",
-    "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
-    "quality": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/codeclimate-test-reporter",
-    "write-readme": "./node_modules/.bin/emdaer"
+    "build": "webpack --",
+    "start": "webpack-dev-server --",
+    "test": "ava -v",
+    "test-watch": "npm run test -- -w",
+    "view-coverage": "nyc report --reporter=html ava && open ./coverage/index.html",
+    "check-coverage": "nyc --check-coverage --lines 100 --functions 100 --branches 100 npm test",
+    "watch-coverage": "nodemon --quiet --watch src --watch test --exec npm run check-coverage -s",
+    "lint-code": "eslint .",
+    "lint-writing": "write-good *.md && alex",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "quality": "nyc report --reporter=text-lcov | codeclimate-test-reporter",
+    "write-readme": "emdaer"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run lint-code && npm run lint-writing",
+      "pre-push": "npm run check-coverage"
+    }
+  },
+  "ava": {
+    "babel": "inherit",
+    "require": [
+      "./test/helpers/dom.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -54,15 +70,18 @@
   "devDependencies": {
     "alex": "^3.1.0",
     "autoprefixer": "^6.3.7",
+    "ava": "^0.16.0",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.13.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-preset-stage-3": "^6.5.0",
+    "babel-register": "^6.14.0",
     "breakpoint-sass": "^2.7.0",
     "codeclimate-test-reporter": "^0.3.3",
     "codecov": "^1.0.1",
@@ -75,7 +94,10 @@
     "eslint-plugin-react": "^5.1.1",
     "ghooks": "^1.3.2",
     "html-webpack-plugin": "^2.19.0",
+    "jsdom": "^9.5.0",
     "node-sass": "^3.8.0",
+    "nodemon": "^1.10.2",
+    "nyc": "^8.1.0",
     "postcss-loader": "^0.9.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
