@@ -4,6 +4,7 @@ install: npm i
 script:
 - npm run lint-code
 - npm run lint-writing
+- npm t
 after_success:
 - npm run coverage
 - npm run quality
