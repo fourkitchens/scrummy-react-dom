@@ -14,7 +14,7 @@ const Client = ({ nickname, vote }) => (
 );
 
 Client.propTypes = {
-  nickname: React.PropTypes.string,
+  nickname: React.PropTypes.string.isRequired,
   vote: React.PropTypes.string,
 };
 

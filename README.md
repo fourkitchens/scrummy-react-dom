@@ -12,6 +12,17 @@
 ![Four Kitchens](https://avatars.githubusercontent.com/u/348885?s=130) | ![Taylor](https://avatars.githubusercontent.com/u/1486573?s=130) | ![Flip](https://avatars.githubusercontent.com/u/1306968?s=130) | ![Luke](https://avatars.githubusercontent.com/u/1127238?s=130)
 --- | --- | --- | ---
 [Four Kitchens](https://github.com/fourkitchens) | [Taylor](https://github.com/tsmith512) | [Flip](https://github.com/flipactual) | [Luke](https://github.com/infiniteluke)
+## Storybook
+
+[Storybook](https://github.com/kadirahq/react-storybook) allows one to develop/style components in isolation. A story describes the different states the respective component can be in. Stories live in `./stories`.
+
+### Usage
+* `npm run storybook`
+* Visit http://localhost:6006
+* Develop/Style components as normal. Changes will be hot reloaded.
+
+## Scripts
+
 ### `build` – build the app
 
 ```sh
@@ -82,6 +93,19 @@ npm run quality
 
 ```sh
 npm run write-readme
+```
+
+
+### `storybook` – run storybook and hot reload changes
+
+```sh
+npm run storybook
+```
+
+### `storybook-build` – build storybook as static site
+
+```sh
+npm run storybook-build
 ```
 
 ## License

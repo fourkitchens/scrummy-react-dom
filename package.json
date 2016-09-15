@@ -45,7 +45,9 @@
     "lint-writing": "write-good *.md && alex",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "quality": "nyc report --reporter=text-lcov | codeclimate-test-reporter",
-    "write-readme": "emdaer"
+    "write-readme": "emdaer",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "config": {
     "ghooks": {
@@ -110,6 +112,7 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
-    "write-good": "^0.9.1"
+    "write-good": "^0.9.1",
+    "@kadira/storybook": "^2.5.2"
   }
 }

@@ -8,7 +8,7 @@ const Card = ({ value, selected }) => (
 );
 
 Card.propTypes = {
-  value: React.PropTypes.string,
+  value: React.PropTypes.string.isRequired,
   selected: React.PropTypes.bool,
 };
 
