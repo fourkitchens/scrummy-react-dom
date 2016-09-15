@@ -14,7 +14,8 @@
 [Four Kitchens](https://github.com/fourkitchens) | [Taylor](https://github.com/tsmith512) | [Flip](https://github.com/flipactual) | [Luke](https://github.com/infiniteluke)
 ## Storybook
 
-[Storybook](https://github.com/kadirahq/react-storybook) allows one to develop/style components in isolation. A story describes the different states the respective component can be in. Stories live in `./stories`.
+[Storybook](https://github.com/kadirahq/react-storybook) allows one to develop/style components in isolation.
+Each component directory contains a respective `story.js` file. `./src/components/stories.js` imports all stories for use in Storybook.
 
 ### Usage
 * `npm run storybook`

@@ -1,6 +1,7 @@
 ## Storybook
 
-[Storybook](https://github.com/kadirahq/react-storybook) allows one to develop/style components in isolation. A story describes the different states the respective component can be in. Stories live in `./stories`.
+[Storybook](https://github.com/kadirahq/react-storybook) allows one to develop/style components in isolation.
+Each component directory contains a respective `story.js` file. `./src/components/stories.js` imports all stories for use in Storybook.
 
 ### Usage
 * `npm run storybook`

@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import Card from '../src/components/Card';
+import Card from './';
 
 const value = 13;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import Client from '../src/components/Client';
+import Client from './';
 
 const vote = 5;
 const nickname = 'John Doe';
