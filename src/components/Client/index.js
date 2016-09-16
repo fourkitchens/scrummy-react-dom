@@ -1,8 +1,9 @@
 import React from 'react';
+import classNames from 'classnames';
 import './Client.scss';
 
 const Client = ({ nickname, vote }) => (
-  <div className={`client ${vote ? 'voted' : ''}`}>
+  <div className={classNames({ client: true, voted: vote })}>
     <div className="back">
       <div className="nickname">{nickname}</div>
     </div>

@@ -87,6 +87,7 @@
     "babel-preset-stage-3": "^6.5.0",
     "babel-register": "^6.14.0",
     "breakpoint-sass": "^2.7.0",
+    "classnames": "^2.2.5",
     "codeclimate-test-reporter": "^0.3.3",
     "codecov": "^1.0.1",
     "css-loader": "^0.23.1",

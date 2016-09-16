@@ -2,13 +2,13 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import Client from './';
 
-const vote = 5;
-const nickname = 'John Doe';
+const VOTE = 5;
+const NICKNAME = 'John Doe';
 
 storiesOf('Client', module)
   .add('Default view', () => (
-    <Client nickname={nickname} />
+    <Client nickname={NICKNAME} />
   ))
   .add('Voted view', () => (
-    <Client nickname={nickname} vote={vote} />
+    <Client nickname={NICKNAME} vote={VOTE} />
   ));

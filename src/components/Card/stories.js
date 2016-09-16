@@ -2,12 +2,12 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import Card from './';
 
-const value = 13;
+const CARD_VALUE = 13;
 
 storiesOf('Card', module)
   .add('Default view', () => (
-    <Card value={value} />
+    <Card value={CARD_VALUE} />
   ))
   .add('Selected view', () => (
-    <Card value={value} selected />
+    <Card value={CARD_VALUE} selected />
   ));
