@@ -1,3 +1,5 @@
+## Scripts
+
 ### `build` – build the app
 
 ```sh
@@ -68,4 +70,17 @@ npm run quality
 
 ```sh
 npm run write-readme
+```
+
+
+### `storybook` – run storybook and hot reload changes
+
+```sh
+npm run storybook
+```
+
+### `storybook-build` – build storybook as static site
+
+```sh
+npm run storybook-build
 ```

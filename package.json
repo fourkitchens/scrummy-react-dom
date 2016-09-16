@@ -45,7 +45,9 @@
     "lint-writing": "write-good *.md && alex",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "quality": "nyc report --reporter=text-lcov | codeclimate-test-reporter",
-    "write-readme": "emdaer"
+    "write-readme": "emdaer",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "config": {
     "ghooks": {
@@ -56,6 +58,7 @@
   "ava": {
     "babel": "inherit",
     "require": [
+      "ignore-styles",
       "./test/helpers/dom.js"
     ]
   },
@@ -68,6 +71,7 @@
     "playscrummy.com"
   ],
   "devDependencies": {
+    "@kadira/storybook": "^2.5.2",
     "alex": "^3.1.0",
     "autoprefixer": "^6.3.7",
     "ava": "^0.16.0",
@@ -83,10 +87,12 @@
     "babel-preset-stage-3": "^6.5.0",
     "babel-register": "^6.14.0",
     "breakpoint-sass": "^2.7.0",
+    "classnames": "^2.2.5",
     "codeclimate-test-reporter": "^0.3.3",
     "codecov": "^1.0.1",
     "css-loader": "^0.23.1",
     "emdaer": "^0.3.2",
+    "enzyme": "^2.4.1",
     "eslint": "^2.11.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",
@@ -94,12 +100,14 @@
     "eslint-plugin-react": "^5.1.1",
     "ghooks": "^1.3.2",
     "html-webpack-plugin": "^2.19.0",
+    "ignore-styles": "^5.0.1",
     "jsdom": "^9.5.0",
     "node-sass": "^3.8.0",
     "nodemon": "^1.10.2",
     "nyc": "^8.1.0",
     "postcss-loader": "^0.9.1",
     "react": "^15.1.0",
+    "react-addons-test-utils": "^15.3.1",
     "react-dom": "^15.1.0",
     "resolve-url-loader": "^1.4.4",
     "sass-loader": "^4.0.0",
