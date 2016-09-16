@@ -9,7 +9,7 @@
 
 ## Contributors
 
-![Four Kitchens](https://avatars.githubusercontent.com/u/348885?s=130) | ![Taylor](https://avatars.githubusercontent.com/u/1486573?s=130) | ![Flip](https://avatars.githubusercontent.com/u/1306968?s=130) | ![Luke](https://avatars.githubusercontent.com/u/1127238?s=130)
+[![Four Kitchens](https://avatars.githubusercontent.com/u/348885?s=130)](https://github.com/fourkitchens) | [![Taylor](https://avatars.githubusercontent.com/u/1486573?s=130)](https://github.com/tsmith512) | [![Flip](https://avatars.githubusercontent.com/u/1306968?s=130)](https://github.com/flipactual) | [![Luke](https://avatars.githubusercontent.com/u/1127238?s=130)](https://github.com/infiniteluke)
 --- | --- | --- | ---
 [Four Kitchens](https://github.com/fourkitchens) | [Taylor](https://github.com/tsmith512) | [Flip](https://github.com/flipactual) | [Luke](https://github.com/infiniteluke)
 ## Storybook
