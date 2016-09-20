@@ -113,6 +113,7 @@
     "sass-loader": "^4.0.0",
     "sass-toolkit": "^2.10.0",
     "singularitygs": "^1.7.0",
+    "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",

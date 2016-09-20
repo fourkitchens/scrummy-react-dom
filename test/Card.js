@@ -1,7 +1,7 @@
 import test from 'ava';
 import React from 'react';
-import Card from '../src/components/Card';
 import { render } from 'enzyme';
+import Card from '../src/components/Card';
 
 function getCard(value, selected) {
   return render(<Card value={value} selected={selected} />);
@@ -18,7 +18,7 @@ test('Card is not selected', t => {
 });
 
 test('Card value is rendered', t => {
-  const value = '13';
-  const wrapper = getCard(value, false);
-  t.is(wrapper.find('.card-text').text(), value);
+  const VALUE = '13';
+  const wrapper = getCard(VALUE, false);
+  t.is(wrapper.find('.card-text').text(), VALUE);
 });
