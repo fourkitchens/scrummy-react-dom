@@ -1,3 +1,4 @@
 import { configure } from '@kadira/storybook';
-
-configure(() => require('../src/components/stories'), module);
+// Get all stories from components.
+const req = require.context('../src/components', true, /stories.js/)
+configure(() => req.keys().forEach((filename) => req(filename)), module);
