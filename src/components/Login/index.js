@@ -1,5 +1,4 @@
 import React from 'react';
-import './Login.scss';
 
 const Login = ({ onSignIn, onWatch }) => (
   <section id="login" className="signin-form">

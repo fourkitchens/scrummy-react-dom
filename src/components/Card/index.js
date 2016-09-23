@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import './Card.scss';
 
 const Card = ({ value, selected }) => (
   <div className={classNames({ card: true, selected })}>

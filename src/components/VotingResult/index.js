@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import Client from '../Client';
-import './VotingResult.scss';
 
 const VotingResult = ({ nickname, gameLinkToggled, onReveal, onReset, onGameLinkToggle }) => (
   <section id="votingResult">
