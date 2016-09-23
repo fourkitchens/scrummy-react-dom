@@ -2,8 +2,6 @@
 @import "~singularitygs/stylesheets/singularitygs";
 @import "~sass-toolkit/stylesheets/toolkit/kickstart";
 
-$var: blue;
-
 main {
   display: flex;
   @include breakpoint(500px) {
