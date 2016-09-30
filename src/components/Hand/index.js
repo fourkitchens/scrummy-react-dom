@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '../Card';
-import './Hand.scss';
 
 const Hand = ({ nickname, points }) => (
   <section id="playersHand">

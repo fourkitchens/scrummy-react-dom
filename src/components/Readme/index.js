@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-indent, max-len */
 
 import React from 'react';
-import './Readme.scss';
 
 const Readme = () => (
   <section id="readme">

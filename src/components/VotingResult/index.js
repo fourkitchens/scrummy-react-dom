@@ -1,6 +1,5 @@
 import React from 'react';
 import Client from '../Client';
-import './VotingResult.scss';
 
 const VotingResult = ({ nickname, onReveal, onReset }) => (
   <section id="votingResult">

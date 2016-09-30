@@ -2,9 +2,12 @@
 @import "~singularitygs/stylesheets/singularitygs";
 @import "~sass-toolkit/stylesheets/toolkit/kickstart";
 
+@import "../components/Card/Card.scss";
+@import "../components/Client/Client.scss";
+
 main {
   display: flex;
   @include breakpoint(500px) {
-    color: red;
+    font-weight: bold;
   }
 }
