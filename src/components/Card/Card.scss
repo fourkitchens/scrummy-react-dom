@@ -1,38 +1,8 @@
-// @TODO: STUFF THAT SHOULD BE "GLOBAL" WHEN POSSIBLE:
-
-@import "~breakpoint-sass/stylesheets/breakpoint";
-@import "~singularitygs/stylesheets/singularitygs";
-@import "~sass-toolkit/stylesheets/toolkit/kickstart";
-
-// Also how to put this in HTML?
-@import url('http://fonts.googleapis.com/css?family=Fjalla+One|Stint+Ultra+Expanded|Open+Sans:400italic,400,700');
-
-// Colors:
-// Neutrals
-$bright: #f2f2f2;
-$light:  #E3DFE3;
-$low:    #312928;
-$dark:   #1F1A19;
-
-// Accents
-$orange: #FC5426;
-$blue:   #0E536E;
-$green:  #2B8045;
-$red:    #D71414;
-
-// Typefaces:
-@mixin fjalla { font-family: 'Fjalla One', sans-serif;        font-weight: 400; }
-@mixin stint  { font-family: 'Stint Ultra Expanded', cursive; font-weight: 400; }
-@mixin osans  { font-family: 'Open Sans', sans-serif;         font-weight: 400; }
-
-// Setup Breakpoints
-$bp-handheld-only: max-width    679px;
-$bp-narrow:        min-width    680px;
-$bp-medium:        min-width    980px;
-$bp-wide:          min-width   1080px;
-$bp-portrait:      orientation portrait;
-
-// @TODO /global
+/**
+ * @file Card.scss
+ * Styles related to individual cards in a Hand. (The point options to
+ * play, not the table which shows other players.)
+ */
 
 .card {
   position: relative;
