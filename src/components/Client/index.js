@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import './Client.scss';
 
 const Client = ({ nickname, vote }) => (
   <div className={classNames({ client: true, voted: vote })}>
