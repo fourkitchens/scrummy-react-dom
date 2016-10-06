@@ -1,7 +1,7 @@
 import test from 'ava';
 import React from 'react';
 import { render } from 'enzyme';
-import Client from '../src/components/Client';
+import Client from '../../src/components/Client';
 
 test('Client voted', t => {
   const wrapper = render(<Client nickname="John Doe" vote="13" />);
