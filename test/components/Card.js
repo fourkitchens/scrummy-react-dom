@@ -1,10 +1,11 @@
 import test from 'ava';
 import React from 'react';
-import { render } from 'enzyme';
-import Card from '../src/components/Card';
+import { shallow } from 'enzyme';
+import sinon from 'sinon';
+import Card from '../../src/components/Card';
 
-function getCard(value, selected) {
-  return render(<Card value={value} selected={selected} />);
+function getCard(value, selected, onVote) {
+  return shallow(<Card value={value} selected={selected} onVote={onVote} />);
 }
 
 test('Card is selected', t => {
@@ -15,6 +16,13 @@ test('Card is selected', t => {
 test('Card is not selected', t => {
   const wrapper = getCard('5', false);
   t.false(wrapper.find('.card').hasClass('selected'));
+});
+
+test('Clicking Card triggers onVote', t => {
+  const onVote = sinon.spy();
+  const wrapper = getCard('5', false, onVote);
+  wrapper.find('.card').simulate('click');
+  t.true(onVote.calledOnce);
 });
 
 test('Card value is rendered', t => {
