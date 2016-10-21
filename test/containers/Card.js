@@ -1,6 +1,6 @@
 import test from 'ava';
 import sinon from 'sinon';
-import { mapDispatchToProps, mapStateToProps } from '../../src/containers/Vote';
+import { mapDispatchToProps, mapStateToProps } from '../../src/containers/Card';
 
 test('Vote mapDispatchToProps', t => {
   const VOTE = '5';
@@ -31,4 +31,3 @@ test('Vote mapStateToProps false', t => {
   const ownProps = { value: '13' };
   t.false(mapStateToProps(state, ownProps).selected);
 });
-

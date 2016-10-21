@@ -1,11 +1,11 @@
 import React from 'react';
-import Vote from '../../containers/Vote';
+import Card from '../../containers/Card';
 
 const Hand = ({ nickname, points }) => (
   <section id="playersHand">
     <h2 id="nickname-display">{nickname}</h2>
     <div className="cards-wrap">
-      {points.map((point, index) => <Vote key={index} value={point} />)}
+      {points.map((point, index) => <Card key={index} value={point} />)}
     </div>
   </section>
 );

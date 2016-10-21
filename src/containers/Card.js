@@ -13,9 +13,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   },
 });
 
-const Vote = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Card);
-
-export default Vote;

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { login } from '../actions';
 import Login from '../components/Login';
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   onSubmitClick: evt => {
     dispatch(login(
       evt.target.querySelector('#txtNickname').value,
@@ -11,6 +11,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const Vote = connect(null, mapDispatchToProps)(Login);
-
-export default Vote;
+export default connect(null, mapDispatchToProps)(Login);

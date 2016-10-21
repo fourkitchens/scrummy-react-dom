@@ -22,6 +22,10 @@ Each component directory contains a respective `story.js` file.
 * Visit http://localhost:6006
 * Develop/Style components as normal. Changes will be hot reloaded.
 
+## Styles
+
+Each component directory contains a respective `<Component>.scss` file. `src/scss/main.scss` contains all component imports along with other global imports.
+
 ## Scripts
 
 ### `build` – build the app
