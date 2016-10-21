@@ -3,10 +3,10 @@ import { login } from '../actions';
 import Login from '../components/Login';
 
 export const mapDispatchToProps = (dispatch) => ({
-  onSubmitClick: evt => {
+  onSubmitClick: event => {
     dispatch(login(
-      evt.target.querySelector('#txtNickname').value,
-      evt.target.querySelector('#txtGame').value
+      event.target.querySelector('#txtNickname').value,
+      event.target.querySelector('#txtGame').value
     ));
   },
 });
