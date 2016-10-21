@@ -5,7 +5,6 @@ import Login from './';
 storiesOf('Login', module)
   .add('Default view', () => (
     <Login
-      onSignIn={action('Signed in')}
-      onWatch={action('Watching')}
+      onSubmitClick={action('Submitted')}
     />
   ));

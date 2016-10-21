@@ -22,7 +22,14 @@ Each component directory contains a respective `story.js` file.
 * Visit http://localhost:6006
 * Develop/Style components as normal. Changes will be hot reloaded.
 
+## Styles
+
+Each component directory contains a respective `<Component>.scss` file. `src/scss/main.scss` contains all component imports along with other global imports.
+
 ## Scripts
+
+### Note
+For faster, deterministic, dependency management, install [yarn](https://yarnpkg.com/en/docs/install) and run `yarn` to install dependencies. For more information on how to use yarn see the [docs](https://yarnpkg.com/en/docs/cli/).
 
 ### `build` – build the app
 

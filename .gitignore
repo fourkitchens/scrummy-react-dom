@@ -1,6 +1,7 @@
 node_modules
 npm-debug.log
 dist
+config/local.*
 
 # Tests
 .nyc_output

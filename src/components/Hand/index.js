@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../Card';
+import Card from '../../containers/Card';
 
 const Hand = ({ nickname, points }) => (
   <section id="playersHand">

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 const Client = ({ nickname, vote }) => (
-  <div className={classNames({ client: true, voted: vote })}>
+  <div className={classNames({ client: true, voted: Boolean(vote) })}>
     <div className="back">
       <div className="nickname">{nickname}</div>
     </div>
