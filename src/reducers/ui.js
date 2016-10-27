@@ -8,6 +8,10 @@ export const ui = (state = {}, action) => {
       return { ...state, revealed: false };
     case messageTypes.youSignedIn:
       return { ...state, signedIn: true };
+    case messageTypes.error:
+      return { ...state, showError: true };
+    case 'hideError':
+      return { ...state, showError: false };
     default:
       return state;
   }

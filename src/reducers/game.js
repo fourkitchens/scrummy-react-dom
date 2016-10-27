@@ -17,6 +17,8 @@ export const game = (state = {}, action) => {
       return { ...state, votes: action.data.votes };
     case messageTypes.clientRevoke:
       return { ...state, votes: omit(state.votes, action.data.nickname) };
+    case messageTypes.error:
+      return { ...state, ...action.data };
     default:
       return state;
   }

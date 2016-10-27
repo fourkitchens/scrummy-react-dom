@@ -8,6 +8,7 @@ export default [
   'reset',
   'clientRevoke',
   'revokeVote',
+  'error',
 ].reduce((accum, msg) => {
   const acc = accum;
   acc[msg] = msg;

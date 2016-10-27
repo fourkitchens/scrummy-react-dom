@@ -29,3 +29,17 @@ test('UI reducer handles youSignedIn', reducerTest(
   { type: messageTypes.youSignedIn },
   { signedIn: true }
 ));
+
+test('UI reducer handles error', reducerTest(
+  ui,
+  { showError: false },
+  { type: messageTypes.error },
+  { showError: true }
+));
+
+test('UI reducer handles hideError', reducerTest(
+  ui,
+  { showError: true },
+  { type: 'hideError' },
+  { showError: false }
+));

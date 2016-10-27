@@ -87,3 +87,14 @@ test('Game reducer handles clientRevoke', reducerTest(
   },
   { nickname: 'flip', votes: { luke: '13' } }
 ));
+
+
+test('Game reducer handles error', reducerTest(
+  game,
+  {},
+  {
+    type: messageTypes.error,
+    data: { message: 'This is an error' },
+  },
+  { message: 'This is an error' }
+));
