@@ -2,28 +2,10 @@
  * @file Message.scss
  */
 
-@keyframes hideAfter {
-  to {
-    width:0;
-    height:0;
-    overflow:hidden;
-  }
-}
-@-webkit-keyframes hideAfter {
-  to {
-    width:0;
-    height:0;
-    visibility:hidden;
-  }
-}
-
 .message {
   display: none;
 }
 
 .message.showError {
   display: block;
-  animation: hideAfter 0s ease-in 3s forwards;
-  animation-fill-mode: forwards;
 }
-
