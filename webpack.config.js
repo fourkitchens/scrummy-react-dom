@@ -1,5 +1,29 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin, optimize } = require('webpack');
 const autoprefixer = require('autoprefixer');
+const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
+
+const plugins = [];
+
+plugins.push(new HtmlWebpackPlugin({
+  template: 'src/index.html',
+  inject: 'body',
+  filename: 'index.html',
+}));
+
+if (NODE_ENV === 'production') {
+  plugins.push(new optimize.DedupePlugin());
+  plugins.push(new DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify(NODE_ENV),
+    },
+  }));
+  plugins.push(new optimize.UglifyJsPlugin({
+    compress: {
+      warnings: true,
+    },
+  }));
+}
 
 module.exports = {
   entry: './src/index.js',
@@ -24,12 +48,6 @@ module.exports = {
     ],
   },
   postcss: () => [autoprefixer],
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      inject: 'body',
-      filename: 'index.html',
-    }),
-  ],
+  plugins,
 };
 

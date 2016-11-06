@@ -24,7 +24,10 @@ const initialState = {
 
 const startUp = () => {
   const setup = applyMiddleware(thunkMiddleware)(createStore);
-  const store = setup(rootReducer, initialState);
+  const devTools = process.env.NODE_ENV !== 'production' ?
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : // eslint-disable-line no-underscore-dangle, max-len
+    undefined;
+  const store = setup(rootReducer, initialState, devTools);
   window.scrummyAPI = new ScrummyAPI(config.apiUrl, store);
   return store;
 };

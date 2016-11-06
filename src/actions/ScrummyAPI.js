@@ -14,6 +14,14 @@ export default class ScrummyAPI {
         store.dispatch(data);
       }
     };
+    window.onbeforeunload = () => {
+      if (store.getState().game.game) {
+        this.emit('disconnect', {
+          game: store.getState().game.game,
+          nickname: store.getState().game.nickname,
+        });
+      }
+    };
   }
 
   /**

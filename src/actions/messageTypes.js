@@ -7,6 +7,7 @@ export default [
   'reveal',
   'reset',
   'clientRevoke',
+  'clientDisconnect',
   'revokeVote',
   'error',
 ].reduce((accum, msg) => {

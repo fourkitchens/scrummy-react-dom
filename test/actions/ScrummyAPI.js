@@ -1,6 +1,7 @@
 import test from 'ava';
 import ScrummyAPI from '../../src/actions/ScrummyAPI';
 import configureStore from 'redux-mock-store';
+import sinon from 'sinon';
 const mockStore = configureStore([]);
 
 test('onmessage dispatches respective action to store', t => {
@@ -19,6 +20,29 @@ test('onmessage calls error when error message is recieved', t => {
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
   scrummyAPI.error = () => { t.pass(); };
   scrummyAPI.ws.onmessage({ data: JSON.stringify(payload) });
+});
+
+test('onbeforeunload calls emits a disconnect message with game and nickname', t => {
+  t.plan(3);
+  const payload = { message: 'Something bad happened', type: 'error' };
+  const store = mockStore({ game: { game: 'coolName', nickname: 'name' } });
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  scrummyAPI.emit = (type, data) => {
+    t.is(type, 'disconnect');
+    t.is(data.game, 'coolName');
+    t.is(data.nickname, 'name');
+  };
+  window.onbeforeunload({ data: JSON.stringify(payload) });
+});
+
+test('onbeforeunload does nothing if not in a game', t => {
+  t.plan(1);
+  const payload = { message: 'Something bad happened', type: 'error' };
+  const store = mockStore({ game: {} });
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  sinon.spy(scrummyAPI, 'emit');
+  t.true(scrummyAPI.emit.notCalled);
+  window.onbeforeunload({ data: JSON.stringify(payload) });
 });
 
 test('emit sends message', t => {
