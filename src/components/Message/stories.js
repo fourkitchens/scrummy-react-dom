@@ -5,6 +5,6 @@ import Message from './';
 const MESSAGE = 'Something happened and this is a message.';
 
 storiesOf('Message', module)
-  .add('Error message', () => (
-    <Message message={MESSAGE} />
+  .add('Show message', () => (
+    <Message message={MESSAGE} showMessage />
   ));
