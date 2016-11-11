@@ -1,0 +1,11 @@
+/**
+ * @file Message.scss
+ */
+
+.message {
+  display: none;
+}
+
+.message.showMessage {
+  display: block;
+}

@@ -33,8 +33,8 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "build": "webpack --",
-    "start": "webpack-dev-server --",
+    "build": "webpack",
+    "start": "webpack-dev-server",
     "test": "ava -v",
     "test-watch": "npm run test -- -w",
     "view-coverage": "nyc report --reporter=html ava && open ./coverage/index.html",
