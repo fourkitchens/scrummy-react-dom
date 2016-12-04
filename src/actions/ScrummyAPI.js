@@ -9,13 +9,19 @@ export default class ScrummyAPI {
     this.ws.onmessage = (msg) => {
       const data = JSON.parse(msg.data);
       if (data.type === 'error') {
-        this.error(store, data);
-      } else {
-        store.dispatch(data);
+        this.dispatchErrorHide(store);
+      } else if (data.type === 'youSignedIn') {
+        this.setHash(data);
+      }
+      store.dispatch(data);
+    };
+    this.ws.onopen = () => {
+      if (!!store.getState().game.game) {
+        this.emit('getPlayerCount', { game: store.getState().game.game });
       }
     };
     window.onbeforeunload = () => {
-      if (store.getState().game.game) {
+      if (store.getState().game.game && store.getState().game.users.length) {
         this.emit('disconnect', {
           game: store.getState().game.game,
           nickname: store.getState().game.nickname,
@@ -44,12 +50,15 @@ export default class ScrummyAPI {
    *
    * @param {Object} store
    *   The redux store.
-   * @param {Object} data
-   *   The data payload which includes the error message.
+   * @param {number} timeoutMs=3000
+   *   The amount of time in ms that the error should show before hiding.
    * @return {undefined}
    */
-  error(store, data) {
-    setTimeout(() => store.dispatch({ type: 'hideError' }), 3000);
-    store.dispatch(data);
+  dispatchErrorHide(store, timeoutMs = 3000) {
+    setTimeout(() => store.dispatch({ type: 'hideError' }), timeoutMs);
+  }
+
+  setHash(data) {
+    history.pushState({ game: data.data.game }, 'New game', `#${data.data.game}`);
   }
 }

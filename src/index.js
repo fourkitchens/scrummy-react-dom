@@ -1,5 +1,6 @@
 import config from '../config';
 import React from 'react';
+import Cookies from 'js-cookie';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -9,12 +10,16 @@ import ScrummyAPI from './actions/ScrummyAPI';
 import App from './components/App';
 import './scss/main.scss';
 
+const nickname = Cookies.get('nickname') || '';
+const game = window.location.hash.length ? window.location.hash.substring(1) : '';
+
 const initialState = {
   game: {
-    nickname: '',
+    nickname,
     votes: {},
     users: [],
     points: [],
+    game,
   },
   ui: {
     revealed: false,

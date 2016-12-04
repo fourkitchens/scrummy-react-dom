@@ -7,6 +7,9 @@ const window = document.defaultView;
 global.navigator = window.navigator;
 global.document = document;
 global.window = window;
+global.history = {
+  pushState: () => {},
+};
 global.WebSocket = class WebSocket {
   send() {}
 };
