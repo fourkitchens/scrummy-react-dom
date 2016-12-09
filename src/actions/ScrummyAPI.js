@@ -50,7 +50,7 @@ export default class ScrummyAPI {
    *
    * @param {Object} store
    *   The redux store.
-   * @param {number} timeoutMs=3000
+   * @param {number} [timeoutMs=3000]
    *   The amount of time in ms that the error should show before hiding.
    * @return {undefined}
    */
