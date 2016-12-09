@@ -1,0 +1,19 @@
+/**
+ * Login Form
+ */
+#loginActions {
+  @include clearfix();
+  @include submitAction();
+  text-align: center;
+
+  input {
+    @include breakpoint($bp-handheld-only) {
+      @include grid-span(8,0,16, $gutter: 1/2, $output-style: 'float');
+      &:nth-child(2n+0) { margin-right: 0; }
+    }
+    @include breakpoint($bp-narrow) {
+      @include grid-span(4,0,16, $gutter: 1/2, $output-style: 'float');
+      &:nth-child(4n+0) { margin-right: 0; }
+    }
+  }
+}

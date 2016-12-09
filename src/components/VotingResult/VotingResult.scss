@@ -1,0 +1,78 @@
+/**
+ * Voting Actions & Results Section
+ */
+#votingActions {
+  @include clearfix();
+  @include submitAction();
+
+  input {
+    @include grid-span(4,0,12, $gutter: 1/2, $output-style: 'float');
+    &:nth-child(3n+0) { margin-right: 0; }
+  }
+
+  /**
+   * The shared game link box (inside the Voting actions box)
+   */
+  #gameLink {
+    @include clearfix();
+    width: 100%;
+    margin-top: 3px;
+    border-top: 1px solid lighten($low, 8%);
+    padding-top: 3px;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  #votingResult.reveal & #btnReveal {
+    @include text-shadow( darken($orange, 50%) 1px 1px 0 );
+
+    background: $orange;
+    @include background-image( linear-gradient( darken($orange, 20%), darken($orange, 30%)) );
+
+    border: 1px solid darken($orange, 50%);
+  }
+
+  #votingResult.reveal & #btnReset {
+    color: $light;
+    @include text-shadow( darken($blue, 20%) 1px 1px 0 );
+
+    background: $blue;
+    @include background-image( linear-gradient(lighten($blue, 5%), darken($blue, 5%)) );
+
+    border: 1px solid darken($blue, 5%);
+
+    &:hover {
+      @include text-shadow( darken($orange, 40%) 1px 1px 0 );
+
+      background: $orange;
+      @include background-image( linear-gradient( darken($orange, 8%), darken($orange, 25%)) );
+
+      border: 1px solid darken($orange, 35%);
+    }
+  }
+}
+
+#votingResult {
+  #clients {
+    .nickname {
+      text-transform: uppercase;
+    }
+
+    .vote-wrap {
+      text-align: center;
+
+      .vote {
+        color: $red;
+        @include stint;
+        @include text-shadow($dark 1px 1px 0px);
+      }
+    }
+
+    /* Set up the flexbox or flexbox-approximate for larger screens */
+    @include breakpoint($bp-narrow) {
+      @include scrummyFlexbox;
+    }
+  }
+}

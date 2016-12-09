@@ -1,0 +1,27 @@
+/**
+ * @file Hand.scss
+ * A display of the available Cards which can be played and the user's name
+ */
+#playersHand {
+  #nickname-display {
+    margin: 0.25em auto;
+  }
+
+  .cards-wrap {
+    @include breakpoint($bp-handheld-only) {
+      text-align: center;
+    }
+
+    @include breakpoint($bp-narrow) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: row wrap;
+
+      .card {
+        float: none;
+        :last-child { margin-right: 0; }
+      }
+    }
+  }
+}

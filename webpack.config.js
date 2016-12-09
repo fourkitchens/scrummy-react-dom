@@ -33,17 +33,22 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.yaml$/, loaders: ['json', 'yaml'] },
+      {
+        test: /\.yaml$/,
+        loaders: ['json', 'yaml'],
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: [
-          'babel',
-        ],
+        loaders: ['babel'],
       },
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'postcss', 'sass'],
+      },
+      {
+        test: /\.png|.svg|.jpg|.gif$/,
+        loaders: ['file'],
       },
     ],
   },
