@@ -1,0 +1,44 @@
+/* Layout */
+#logo {
+  width: 70%;
+  max-width: 350px;
+
+  margin: 0.25em auto;
+
+  > div {
+  // Intrinsic Ratio
+  position: relative;
+  padding-bottom: 30%;
+  height: 0;
+
+    h1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+
+      font-size: 0;
+      text-indent: -1000px;
+      overflow: hidden;
+
+      background: {
+        image: url('../assets/logo-banner-dkgreen.png');
+        size: contain;
+        position: center center;
+        repeat: no-repeat;
+      }
+
+      html.svg & { background-image: url('../assets/logo-banner-dkgreen.svg'); }
+    }
+  }
+
+  @include breakpoint($bp-narrow) {
+    margin: 0.25em auto 0.75em auto;
+  }
+
+  @include breakpoint($bp-wide) {
+    margin: 0.5em auto 1.25em auto;
+  }
+}
