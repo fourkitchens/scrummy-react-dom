@@ -6,6 +6,7 @@ import Footer from '../Footer';
 import VotingResult from '../../containers/VotingResult';
 import Login from '../../containers/Login';
 import Hand from '../../containers/Hand';
+import Message from '../../containers/Message';
 
 const App = ({ signedIn }) => (
   <div>
@@ -20,6 +21,7 @@ const App = ({ signedIn }) => (
         <Readme />
       </section>)}
     <Footer />
+    <Message />
   </div>
 );
 

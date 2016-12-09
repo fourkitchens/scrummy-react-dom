@@ -1,13 +1,13 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf, linkTo } from '@kadira/storybook';
 import Card from './';
 
-const CARD_VALUE = 13;
+const CARD_VALUE = '13';
 
 storiesOf('Card', module)
   .add('Default view', () => (
-    <Card value={CARD_VALUE} />
+    <Card value={CARD_VALUE} onVote={linkTo('Card', 'Selected view')} />
   ))
   .add('Selected view', () => (
-    <Card value={CARD_VALUE} selected />
+    <Card value={CARD_VALUE} selected onVote={linkTo('Card', 'Default view')} />
   ));
