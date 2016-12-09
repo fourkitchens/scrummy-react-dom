@@ -1,0 +1,28 @@
+
+.site-footer {
+  width: 96%;
+  max-width: 1000px;
+  margin: 0.5em auto 1em auto;
+
+  font-size: 0.625em;
+  text-align: center;
+
+  color: darken($green, 20%);
+  font-family: Helvetica, Arial, sans-serif;
+
+  a { color: darken($green, 35%); }
+
+  @include breakpoint($bp-narrow) {
+    font-size: 0.75em;
+  }
+
+  @include breakpoint($bp-medium) {
+    font-size: 0.875em;
+    @include text-shadow( 1px 1px 0 lighten($green, 10%) );
+    @include fjalla;
+  }
+
+  @include breakpoint($bp-wide) {
+    font-size: 1em;
+  }
+}

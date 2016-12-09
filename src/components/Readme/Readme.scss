@@ -1,0 +1,54 @@
+#readme {
+
+  .text {
+    font-size: 0.75em;
+    @include osans;
+  }
+
+  p {
+    max-width: 35em;
+    margin-left: auto;
+    margin-right: auto;
+    @include text-shadow( 1px 1px 0 darken($low, 15%) );
+
+    @include column-break(inside, avoid);
+  }
+
+  strong {
+    font-weight: normal;
+    color: $orange;
+  }
+
+  em {
+    font-style: normal;
+    color: lighten($blue, 15%);
+  }
+
+  a {
+    @include text-shadow( 1px 1px 0 darken($low, 30%) );
+  }
+
+  html.csscolumns & .text {
+    @include breakpoint('narrow') {
+      font-size: 0.875em;
+
+      @include columns(2);
+      @include column-gap(2.5em);
+
+      p {
+        max-width: none;
+        margin-top: 0;
+      }
+    }
+
+    @include breakpoint($bp-medium) {
+      font-size: 0.925em;
+    }
+
+    @include breakpoint($bp-wide) {
+      font-size: 1em;
+      @include columns(3);
+      @include column-gap(2em);
+    }
+  }
+}

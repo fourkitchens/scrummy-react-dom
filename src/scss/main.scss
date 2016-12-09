@@ -1,6 +1,7 @@
 @import "~breakpoint-sass/stylesheets/breakpoint";
 @import "~singularitygs/stylesheets/singularitygs";
 @import "~sass-toolkit/stylesheets/toolkit/kickstart";
+@import "~compass-mixins/lib/compass/css3";
 
 // @TODO: Also how to put this in HTML?
 @import url('http://fonts.googleapis.com/css?family=Fjalla+One|Stint+Ultra+Expanded|Open+Sans:400italic,400,700');
@@ -30,14 +31,23 @@ $bp-medium:        min-width    980px;
 $bp-wide:          min-width   1080px;
 $bp-portrait:      orientation portrait;
 
+/* Set up basic colors and typefaces */
+body {
+  background: $green url('../assets/table_bg_green.gif') center center repeat;
+  color: $bright;
+  @include fjalla;
+  line-height: 1.5;
+}
+
+@import "helpers";
+
 @import "../components/Card/Card.scss";
 @import "../components/Hand/Hand.scss";
 @import "../components/Client/Client.scss";
+@import "../components/Login/Login.scss";
 @import "../components/Message/Message.scss";
-
-main {
-  display: flex;
-  @include breakpoint(500px) {
-    font-weight: bold;
-  }
-}
+@import "../components/Readme/Readme.scss";
+@import "../components/Logo/Logo.scss";
+@import "../components/VotingResult/VotingResult.scss";
+@import "../components/Footer/Footer.scss";
+@import "../components/App/App.scss";

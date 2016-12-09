@@ -12,11 +12,11 @@ const App = ({ signedIn }) => (
   <div>
     <Logo />
     {signedIn ?
-      (<section>
+      (<section id="container">
         <VotingResult />
         <Hand />
       </section>) :
-      (<section>
+      (<section id="container">
         <Login />
         <Readme />
       </section>)}
