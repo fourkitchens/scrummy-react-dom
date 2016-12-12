@@ -8,6 +8,7 @@ test('onmessage dispatches respective action to store', t => {
   const payload = { value: '13', type: 'placeVote' };
   const store = mockStore({});
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  scrummyAPI.init();
   scrummyAPI.ws.onmessage({ data: JSON.stringify(payload) });
   const actions = store.getActions();
   t.deepEqual(actions[0], payload);
@@ -18,6 +19,7 @@ test('onmessage calls error when error message is recieved', t => {
   const payload = { message: 'Something bad happened', type: 'error' };
   const store = mockStore({});
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  scrummyAPI.init();
   scrummyAPI.dispatchErrorHide = () => { t.pass(); };
   scrummyAPI.ws.onmessage({ data: JSON.stringify(payload) });
 });
@@ -31,6 +33,7 @@ test('onbeforeunload calls emits a disconnect message with game and nickname', t
     users: [{ nickname: 'name' }],
   } });
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  scrummyAPI.init();
   scrummyAPI.emit = (type, data) => {
     t.is(type, 'disconnect');
     t.is(data.game, 'coolName');
@@ -44,6 +47,7 @@ test('onbeforeunload does nothing if not in a game', t => {
   const payload = { message: 'Something bad happened', type: 'error' };
   const store = mockStore({ game: {} });
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  scrummyAPI.init();
   sinon.spy(scrummyAPI, 'emit');
   t.true(scrummyAPI.emit.notCalled);
   window.onbeforeunload({ data: JSON.stringify(payload) });
@@ -61,6 +65,7 @@ test('emit sends message', t => {
     }
   };
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  scrummyAPI.init();
   scrummyAPI.emit(payload.type, payload.data);
 });
 
@@ -68,7 +73,7 @@ test.cb('error dispatch actions', t => {
   t.plan(1);
   const store = mockStore({});
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
-  scrummyAPI.dispatchErrorHide(store, 1);
+  scrummyAPI.dispatchErrorHide(1);
   // Wait for all actions to be done.
   setTimeout(() => {
     const actions = store.getActions();
@@ -81,7 +86,7 @@ test.cb('error dispatch actions, use default', t => {
   t.plan(1);
   const store = mockStore({});
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
-  scrummyAPI.dispatchErrorHide(store);
+  scrummyAPI.dispatchErrorHide();
   // Wait for all actions to be done.
   setTimeout(() => {
     const actions = store.getActions();
@@ -98,6 +103,7 @@ test('setHash is called when you sign in', t => {
   };
   const store = mockStore({});
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  scrummyAPI.init();
   scrummyAPI.setHash = () => { t.pass(); };
   scrummyAPI.ws.onmessage({ data: JSON.stringify(payload) });
 });
@@ -108,7 +114,7 @@ test('setHash pushes game name to history', t => {
   const store = mockStore({});
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
   const spy = sinon.spy(history, 'pushState');
-  scrummyAPI.setHash(data);
+  scrummyAPI.setHash(data.data.game);
   t.true(spy.calledOnce);
   t.is(spy.args[0][2], `#${data.data.game}`);
 });
@@ -118,6 +124,7 @@ test('onopen gets the player count if game is set', t => {
   const game = 'gamename';
   const store = mockStore({ game: { game } });
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  scrummyAPI.init();
   scrummyAPI.emit = (type, data) => {
     t.is(type, 'getPlayerCount');
     t.is(data.game, game);
@@ -129,6 +136,7 @@ test('onopen does not get player count count if game is not set', t => {
   t.plan(1);
   const store = mockStore({ game: { game: '' } });
   const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  scrummyAPI.init();
   const spy = sinon.spy(scrummyAPI, 'emit');
   scrummyAPI.ws.onopen();
   t.true(spy.notCalled);

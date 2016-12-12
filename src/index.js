@@ -34,6 +34,7 @@ const startUp = () => {
     undefined;
   const store = setup(rootReducer, initialState, devTools);
   window.scrummyAPI = new ScrummyAPI(config.apiUrl, store);
+  window.scrummyAPI.init();
   return store;
 };
 
