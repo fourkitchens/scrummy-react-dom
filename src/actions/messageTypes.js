@@ -10,6 +10,7 @@ export default [
   'clientDisconnect',
   'revokeVote',
   'error',
+  'playerCount',
 ].reduce((accum, msg) => {
   const acc = accum;
   acc[msg] = msg;

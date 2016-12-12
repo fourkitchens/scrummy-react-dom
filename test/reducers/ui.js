@@ -30,16 +30,23 @@ test('UI reducer handles youSignedIn', reducerTest(
   { signedIn: true }
 ));
 
+test('UI reducer handles playerCount', reducerTest(
+  ui,
+  { numPlayers: 0 },
+  { type: messageTypes.playerCount, data: { numPlayers: 5 } },
+  { numPlayers: 5 }
+));
+
 test('UI reducer handles error', reducerTest(
   ui,
-  { showError: false },
+  { showMessage: false },
   { type: messageTypes.error },
-  { showError: true }
+  { showMessage: true }
 ));
 
 test('UI reducer handles hideError', reducerTest(
   ui,
-  { showError: true },
+  { showMessage: true },
   { type: 'hideError' },
-  { showError: false }
+  { showMessage: false }
 ));

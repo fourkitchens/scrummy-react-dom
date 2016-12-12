@@ -83,7 +83,7 @@ test('Game reducer handles clientRevoke', reducerTest(
   { nickname: 'flip', votes: { flip: '5', luke: '13' } },
   {
     type: messageTypes.clientRevoke,
-    data: { nickname: 'flip' },
+    data: { votes: { luke: '13' } },
   },
   { nickname: 'flip', votes: { luke: '13' } }
 ));
@@ -93,7 +93,7 @@ test('Game reducer handles clientDisconnect', reducerTest(
   { nickname: 'Jess', users: [{ nickname: 'Jess' }, { nickname: 'Coach' }, { nickname: 'Tran' }] },
   {
     type: messageTypes.clientDisconnect,
-    data: { nickname: 'Coach' },
+    data: { users: [{ nickname: 'Jess' }, { nickname: 'Tran' }] },
   },
   { nickname: 'Jess', users: [{ nickname: 'Jess' }, { nickname: 'Tran' }] }
 ));

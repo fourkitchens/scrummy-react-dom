@@ -1,27 +1,72 @@
 export default class ScrummyAPI {
-  /**
- * constructor
- *   Creates a connection to the Scrummy API.
- * @return {undefined}
- */
+ /**
+   * constructor
+   *   Creates a connection to the Scrummy API.
+   * @return {undefined}
+   */
   constructor(uri, store) {
+    this.store = store;
     this.ws = new WebSocket(uri);
-    this.ws.onmessage = (msg) => {
-      const data = JSON.parse(msg.data);
-      if (data.type === 'error') {
-        this.error(store, data);
-      } else {
-        store.dispatch(data);
-      }
-    };
-    window.onbeforeunload = () => {
-      if (store.getState().game.game) {
-        this.emit('disconnect', {
-          game: store.getState().game.game,
-          nickname: store.getState().game.nickname,
-        });
-      }
-    };
+  }
+
+  /**
+   * init
+   *   Initializes event listeners
+   *
+   * @return {undefined}
+   */
+  init() {
+    window.onbeforeunload = () => this.handleDisconnect();
+    this.ws.onmessage = (message) => this.handleMessage(message);
+    this.ws.onopen = () => this.getPlayerCount();
+  }
+
+  /**
+   * handleMessage
+   *   Dispatches messages by type.
+   *
+   * @param {object} message
+   *   The WebSocket MessageEvent received from the API.
+   * @return {undefined}
+   */
+  handleMessage(message) {
+    const action = JSON.parse(message.data);
+    if (action.type === 'error') {
+      this.dispatchErrorHide(this.store);
+    } else if (action.type === 'youSignedIn') {
+      this.setHash(action.data.game);
+    }
+    this.store.dispatch(action);
+  }
+
+  /**
+   * getPlayerCount
+   *   Gets player count for current game
+   *
+   * @param {object} message
+   *   The WebSocket MessageEvent received from the API.
+   * @return {undefined}
+   */
+  getPlayerCount() {
+    if (!!this.store.getState().game.game) {
+      this.emit('getPlayerCount', { game: this.store.getState().game.game });
+    }
+  }
+
+  /**
+   * handleDisconnect
+   *   Sends disconnect event before browser is closed.
+   *
+   * @return {undefined}
+   */
+  handleDisconnect() {
+    if (this.store.getState().game.game &&
+        this.store.getState().game.users.length) {
+      this.emit('disconnect', {
+        game: this.store.getState().game.game,
+        nickname: this.store.getState().game.nickname,
+      });
+    }
   }
 
   /**
@@ -42,14 +87,23 @@ export default class ScrummyAPI {
    * error
    *   Dispatches the error action and a delayed hideError action.
    *
-   * @param {Object} store
-   *   The redux store.
-   * @param {Object} data
-   *   The data payload which includes the error message.
+   * @param {number} [timeoutMs=3000]
+   *   The amount of time in ms that the error should show before hiding.
    * @return {undefined}
    */
-  error(store, data) {
-    setTimeout(() => store.dispatch({ type: 'hideError' }), 3000);
-    store.dispatch(data);
+  dispatchErrorHide(timeoutMs = 3000) {
+    setTimeout(() => this.store.dispatch({ type: 'hideError' }), timeoutMs);
+  }
+
+  /**
+   * setHash
+   *   Push the game name to the browser history as a hash.
+   *
+   * @param {string} game
+   *   The game name
+   * @return {undefined}
+   */
+  setHash(game) {
+    history.pushState({ game }, 'New game', `#${game}`);
   }
 }

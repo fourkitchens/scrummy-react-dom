@@ -1,6 +1,6 @@
 import test from 'ava';
 import sinon from 'sinon';
-import { vote, login, reveal, reset } from '../../src/actions';
+import { vote, login, reveal, reset, changeGameName } from '../../src/actions';
 import messageTypes from '../../src/actions/messageTypes';
 
 test.beforeEach(() => {
@@ -96,4 +96,14 @@ test('reset action dispatches/emits reset', t => {
     game: state.game.game,
     nickname: state.game.nickname,
   }));
+});
+
+test('changeGameName action dispatches changeGameName and emits getPlayerCount', t => {
+  const dispatch = sinon.spy();
+  const game = 'blue';
+  changeGameName(game)(dispatch);
+  t.true(dispatch.calledOnce);
+  t.true(dispatch.calledWith({ type: 'changeGameName', data: { game } }));
+  t.true(window.scrummyAPI.emit.calledOnce);
+  t.true(window.scrummyAPI.emit.calledWith('getPlayerCount', { game }));
 });

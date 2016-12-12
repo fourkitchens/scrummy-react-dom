@@ -1,4 +1,5 @@
 import messageTypes from './messageTypes';
+import Cookies from 'js-cookie';
 
 export function vote(value) {
   return (dispatch, getState) => {
@@ -21,6 +22,7 @@ export function vote(value) {
 
 export function login(nickname, game) {
   return () => {
+    Cookies.set('nickname', nickname, { expires: 31536000 });
     window.scrummyAPI.emit(messageTypes.signIn, {
       nickname,
       game,
@@ -45,5 +47,12 @@ export function reset() {
       game: getState().game.game,
       nickname: getState().game.nickname,
     });
+  };
+}
+
+export function changeGameName(game) {
+  return (dispatch) => {
+    dispatch({ type: 'changeGameName', data: { game } });
+    window.scrummyAPI.emit('getPlayerCount', { game });
   };
 }
