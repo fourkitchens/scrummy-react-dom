@@ -72,6 +72,7 @@
     "breakpoint-sass": "^2.7.0",
     "classnames": "^2.2.5",
     "compass-mixins": "^0.12.10",
+    "enzyme": "^2.6.0",
     "file-loader": "^0.9.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

@@ -71,3 +71,24 @@ test('Results show if revealed', t => {
   const text = wrapper.find('.vote').text();
   t.is(text, '5');
 });
+
+test('Game url text is selected if clicked', t => {
+  const spy = sinon.spy();
+  const value = 'http://localhost:8080';
+  const temp = document.getElementById;
+  document.getElementById = () => ({
+    setSelectionRange: spy,
+    value,
+  });
+  const wrapper = shallow(<VotingResult
+    users={[]}
+    votes={{}}
+    revealed={false}
+    onReveal={() => {}}
+    onReset={() => {}}
+  />);
+  wrapper.find('#txtUrl').simulate('click', { currentTarget: { id: 'txtUrl' } });
+  t.true(spy.calledOnce);
+  t.true(spy.calledWith(0, value.length));
+  document.getElementById = temp;
+});
