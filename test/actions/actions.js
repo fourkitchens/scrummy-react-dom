@@ -57,6 +57,7 @@ test('login action emits signIn', t => {
   t.true(window.scrummyAPI.emit.calledWith(messageTypes.signIn, {
     game,
     nickname,
+    watch: false,
   }));
 });
 

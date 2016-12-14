@@ -22,10 +22,17 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  onSubmitClick: event => {
+  onPlayClick: event => {
     dispatch(login(
-      event.target.querySelector('#txtNickname').value,
-      event.target.querySelector('#txtGame').value
+      event.target.parentNode.querySelector('#txtNickname').value,
+      event.target.parentNode.querySelector('#txtGame').value
+    ));
+  },
+  onWatchClick: event => {
+    dispatch(login(
+      event.target.parentNode.querySelector('#txtNickname').value,
+      event.target.parentNode.querySelector('#txtGame').value,
+      true
     ));
   },
   onChangeGameName: event => {

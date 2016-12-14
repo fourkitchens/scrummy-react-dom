@@ -15,14 +15,14 @@ const VotingResult = ({ users, votes, revealed, onReveal, onReset }) => (
     <div id="clients">
       {users.map((user, index) => {
         let client;
-        if (revealed) {
+        if (revealed && !user.watch) {
           client = (<Client
             key={index}
             nickname={user.nickname}
             vote={votes[user.nickname]}
             revealed
           />);
-        } else {
+        } else if (!user.watch) {
           client = (<Client
             key={index}
             nickname={user.nickname}
