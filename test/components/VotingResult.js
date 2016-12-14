@@ -4,6 +4,21 @@ import { shallow, render } from 'enzyme';
 import sinon from 'sinon';
 import VotingResult from '../../src/components/VotingResult';
 
+test('Watch users do not show in VotingResult client list', t => {
+  const USERS = [
+    { nickname: 'John Doe', watch: true },
+    { nickname: 'Jane Doe' },
+  ];
+  const wrapper = shallow(<VotingResult
+    users={USERS}
+    votes={{}}
+    revealed={false}
+    onReveal={() => {}}
+    onReset={() => {}}
+  />);
+  t.is(wrapper.find('#clients').length, 1);
+});
+
 test('Clicking button calls respective click handler', t => {
   const USERS = [
     { nickname: 'John Doe' },
@@ -50,7 +65,7 @@ test('Results do not show if not revealed', t => {
   t.falsy(text);
 });
 
-test('Results show if revealed', t => {
+test('Results show if revealed and not watching', t => {
   const USERS = [
     { nickname: 'John Doe' },
     { nickname: 'Jane Doe' },
