@@ -56,7 +56,7 @@ export default class ScrummyAPI {
       this.dispatchErrorHide(this.store);
     } else if (action.type === 'youSignedIn') {
       this.setHash(action.data.game);
-      window.addEventListener('keyup', this.handleKeyboardShortcuts.bind(this), true);
+      window.addEventListener('keyup', () => this.handleKeyboardShortcuts.bind(this), true);
     }
     this.store.dispatch(action);
   }
