@@ -74,6 +74,7 @@
     "compass-mixins": "^0.12.10",
     "enzyme": "^2.6.0",
     "file-loader": "^0.9.0",
+    "nyc": "^10.0.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
