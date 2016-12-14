@@ -163,6 +163,26 @@ test('keyboard shortcuts dispatch respective actions', t => {
   delete window.scrummyAPI;
 });
 
+test('A keyup event dispatches respective actions', t => {
+  const game = 'fakegame';
+  const nickname = 'Nick';
+  const stubs = {
+    defaultPrevented: false,
+    preventDefault: () => {},
+  };
+  const store = configureStore([thunkMiddleware])({ game: { game, nickname } });
+  const event = document.createEvent('HTMLEvents');
+  window.scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  window.scrummyAPI.init();
+  window.scrummyAPI.emit = type => t.is(type, 'reveal');
+  window.scrummyAPI.handleKeyboardShortcuts({ key: 'Enter', ...stubs });
+  event.initEvent('keyup', false, true);
+  window.dispatchEvent(event);
+  const actions = store.getActions();
+  t.deepEqual(actions[0], { type: 'reveal' });
+  delete window.scrummyAPI;
+});
+
 test('inconsequential keyup event does not dispatch actions', t => {
   const spy = sinon.spy();
   const stubs = {
