@@ -1,6 +1,7 @@
 import React from 'react';
-import Client from '../Client';
 import classNames from 'classnames';
+import Client from '../Client';
+import { selectText } from '../../lib/util';
 
 const VotingResult = ({ users, votes, revealed, onReveal, onReset }) => (
   <section id="votingResult" className={classNames({ reveal: revealed })}>
@@ -8,20 +9,20 @@ const VotingResult = ({ users, votes, revealed, onReveal, onReset }) => (
       <input type="button" id="btnReveal" value="Reveal" onClick={onReveal} />
       <input type="button" id="btnReset" value="Reset" onClick={onReset} />
       <div id="gameLink">
-        <input type="text" id="txtUrl" value={window.location.href} readOnly />
+        <input type="text" id="txtUrl" value={window.location.href} onClick={selectText} readOnly />
       </div>
     </div>
     <div id="clients">
       {users.map((user, index) => {
         let client;
-        if (revealed) {
+        if (revealed && !user.watch) {
           client = (<Client
             key={index}
             nickname={user.nickname}
             vote={votes[user.nickname]}
             revealed
           />);
-        } else {
+        } else if (!user.watch) {
           client = (<Client
             key={index}
             nickname={user.nickname}

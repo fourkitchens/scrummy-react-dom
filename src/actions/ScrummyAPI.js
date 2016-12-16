@@ -1,3 +1,5 @@
+import { reset, reveal } from './';
+
 export default class ScrummyAPI {
  /**
    * constructor
@@ -22,6 +24,25 @@ export default class ScrummyAPI {
   }
 
   /**
+   * handleKeyboardShortcuts
+   *   Dispatches reveal/reset shortcuts
+   *
+   * @param {object} event
+   *   The KeyboardEvent
+   * @return {undefined}
+   */
+  handleKeyboardShortcuts(event) {
+    if (event.defaultPrevented) {
+      return;
+    } else if (event.key === 'Enter') {
+      this.store.dispatch(reveal());
+    } else if (event.key === 'Escape') {
+      this.store.dispatch(reset());
+    }
+    event.preventDefault();
+  }
+
+  /**
    * handleMessage
    *   Dispatches messages by type.
    *
@@ -35,6 +56,7 @@ export default class ScrummyAPI {
       this.dispatchErrorHide(this.store);
     } else if (action.type === 'youSignedIn') {
       this.setHash(action.data.game);
+      window.addEventListener('keyup', () => this.handleKeyboardShortcuts.bind(this), true);
     }
     this.store.dispatch(action);
   }

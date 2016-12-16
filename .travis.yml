@@ -8,6 +8,17 @@ script:
 after_success:
 - npm run coverage
 - npm run quality
+before_deploy:
+- npm run build
+deploy:
+  provider: s3
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
+  bucket: scrummy-react-dom
+  local_dir: dist
+  skip_cleanup: true
+  on:
+    tags: true
 addons:
   code_climate:
     repo_token: 71f2cd6d566ae00dfc698f68ec3f239b4db7feecf3306465a9aae07554132624

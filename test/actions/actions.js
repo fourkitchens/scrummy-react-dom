@@ -57,6 +57,20 @@ test('login action emits signIn', t => {
   t.true(window.scrummyAPI.emit.calledWith(messageTypes.signIn, {
     game,
     nickname,
+    watch: false,
+  }));
+});
+
+test('login action emits signIn with watch property', t => {
+  const nickname = 'suzy';
+  const game = 'green';
+  const dispatch = sinon.spy();
+  login(nickname, game, true)(dispatch);
+  t.true(window.scrummyAPI.emit.calledOnce);
+  t.true(window.scrummyAPI.emit.calledWith(messageTypes.signIn, {
+    game,
+    nickname,
+    watch: true,
   }));
 });
 

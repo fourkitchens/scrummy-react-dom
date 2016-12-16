@@ -20,12 +20,13 @@ export function vote(value) {
   };
 }
 
-export function login(nickname, game) {
+export function login(nickname, game, watch = false) {
   return () => {
     Cookies.set('nickname', nickname, { expires: 31536000 });
     window.scrummyAPI.emit(messageTypes.signIn, {
       nickname,
       game,
+      watch,
     });
   };
 }
