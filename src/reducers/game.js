@@ -13,7 +13,7 @@ export const game = (state = {}, action) => {
     case 'changeGameName':
       return { ...state, ...action.data };
     case messageTypes.placeVote:
-      return { ...state, votes: { [state.nickname]: action.value } };
+      return { ...state, votes: { [state.nickname]: action.value, ...state.votes } };
     default:
       return state;
   }

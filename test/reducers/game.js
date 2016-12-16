@@ -17,6 +17,13 @@ test('Game reducer handles placeVote', reducerTest(
   { nickname: 'flip', votes: { flip: '5' } }
 ));
 
+test('Game reducer handles placeVote with existing vote', reducerTest(
+  game,
+  { nickname: 'flip', votes: { luke: '20' } },
+  { type: messageTypes.placeVote, value: '5' },
+  { nickname: 'flip', votes: { flip: '5', luke: '20' } }
+));
+
 test('Game reducer handles youSignedIn', reducerTest(
   game,
   { nickname: '', users: [], points: [] },
