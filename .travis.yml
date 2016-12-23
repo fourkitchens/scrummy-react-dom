@@ -10,6 +10,7 @@ after_success:
 - npm run quality
 before_deploy:
 - npm run build
+- find dist \( -iname '*.html' -o -iname '*.css' -o -iname '*.js' \) -exec gzip -9 -n {} \; -exec mv {}.gz {} \;
 deploy:
   provider: s3
   access_key_id: "$AWS_ACCESS_KEY"
@@ -17,6 +18,9 @@ deploy:
   bucket: scrummy-react-dom
   local_dir: dist
   skip_cleanup: true
+  acl: public_read
+  detect_encoding: true
+  cache_control: "max-age=31536000"
   on:
     tags: true
 addons:
