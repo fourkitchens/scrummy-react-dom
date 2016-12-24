@@ -53,7 +53,8 @@ export default class ScrummyAPI {
   handleMessage(message) {
     const action = JSON.parse(message.data);
     if (action.type === 'error') {
-      this.dispatchErrorHide(this.store);
+      clearTimeout(this.errorTimeout);
+      this.errorTimeout = this.dispatchErrorHide();
     } else if (action.type === 'youSignedIn') {
       this.setHash(action.data.game);
       window.addEventListener('keyup', () => this.handleKeyboardShortcuts.bind(this), true);
@@ -111,10 +112,11 @@ export default class ScrummyAPI {
    *
    * @param {number} [timeoutMs=3000]
    *   The amount of time in ms that the error should show before hiding.
-   * @return {undefined}
+   * @return {number}
+   *  timeoutId
    */
   dispatchErrorHide(timeoutMs = 3000) {
-    setTimeout(() => this.store.dispatch({ type: 'hideError' }), timeoutMs);
+    return setTimeout(() => this.store.dispatch({ type: 'hideError' }), timeoutMs);
   }
 
   /**

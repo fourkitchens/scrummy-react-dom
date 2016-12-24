@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 const Message = ({ message, showMessage }) => (
-  <div className={classNames({ message, showMessage })}>{message}</div>
+  <div className={classNames({ message: true, showMessage })}>{message}</div>
 );
 
 Message.propTypes = {

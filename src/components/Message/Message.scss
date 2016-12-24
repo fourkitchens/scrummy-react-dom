@@ -3,9 +3,18 @@
  */
 
 .message {
-  display: none;
+  position: fixed;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+  width: 100%;
+  right: 0;
+  padding: 12px;
+  height: 48px;
+  background: #0E536E;
+  text-align: center;
 }
 
 .message.showMessage {
-  display: block;
+  opacity: 1;
 }
