@@ -5,7 +5,7 @@ import sinon from 'sinon';
 import thunkMiddleware from 'redux-thunk';
 const mockStore = configureStore([]);
 
-test.beforeEach(() => {
+test.before(() => {
   global.ga = () => {};
 });
 
