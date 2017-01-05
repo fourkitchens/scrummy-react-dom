@@ -13,3 +13,4 @@ global.history = {
 global.WebSocket = class WebSocket {
   send() {}
 };
+global.ga = () => {};

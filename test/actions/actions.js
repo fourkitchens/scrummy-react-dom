@@ -3,10 +3,6 @@ import sinon from 'sinon';
 import { vote, login, reveal, reset, changeGameName } from '../../src/actions';
 import messageTypes from '../../src/actions/messageTypes';
 
-test.before(() => {
-  global.ga = () => {};
-});
-
 test.beforeEach(() => {
   window.scrummyAPI = {};
   window.scrummyAPI.emit = sinon.spy();
