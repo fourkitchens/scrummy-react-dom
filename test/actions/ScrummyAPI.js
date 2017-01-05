@@ -5,6 +5,10 @@ import sinon from 'sinon';
 import thunkMiddleware from 'redux-thunk';
 const mockStore = configureStore([]);
 
+test.before(() => {
+  global.ga = () => {};
+});
+
 test('onmessage dispatches respective action to store', t => {
   const payload = { value: '13', type: 'placeVote' };
   const store = mockStore({});
