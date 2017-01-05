@@ -17,6 +17,7 @@ export function vote(value) {
         nickname: getState().game.nickname,
       });
     }
+    ga('send', 'event', 'Actions', 'vote', getState().game.game);
   };
 }
 
@@ -28,6 +29,7 @@ export function login(nickname, game, watch = false) {
       game,
       watch,
     });
+    ga('send', 'event', 'Actions', 'login', nickname);
   };
 }
 
@@ -38,6 +40,7 @@ export function reveal() {
       game: getState().game.game,
       nickname: getState().game.nickname,
     });
+    ga('send', 'event', 'Actions', 'reveal', getState().game.game);
   };
 }
 
@@ -48,6 +51,7 @@ export function reset() {
       game: getState().game.game,
       nickname: getState().game.nickname,
     });
+    ga('send', 'event', 'Actions', 'reset', getState().game.game);
   };
 }
 

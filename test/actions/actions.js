@@ -6,6 +6,7 @@ import messageTypes from '../../src/actions/messageTypes';
 test.beforeEach(() => {
   window.scrummyAPI = {};
   window.scrummyAPI.emit = sinon.spy();
+  global.ga = () => {};
 });
 
 test('vote action dispatches/emits placeVote', t => {
