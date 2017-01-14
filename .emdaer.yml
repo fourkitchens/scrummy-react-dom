@@ -21,7 +21,9 @@
         image: 'david/dev/fourkitchens/scrummy-react-dom.svg'
         link: 'https://david-dm.org/dev/fourkitchens/scrummy-react-dom#info=devDependencies&view=table'
 - contributors: true
+- include: './docs/setup.md'
 - include: './docs/storybook.md'
 - include: './docs/styles.md'
 - include: './docs/scripts.md'
+- include: './docs/backend.md'
 - license: true
