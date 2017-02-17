@@ -6,9 +6,9 @@ export default class ScrummyAPI {
    *   Creates a connection to the Scrummy API.
    * @return {undefined}
    */
-  constructor(uri, store) {
+  constructor(uri, store, Ws) {
     this.store = store;
-    this.ws = new WebSocket(uri);
+    this.ws = new Ws(uri, []);
   }
 
   /**
@@ -20,7 +20,14 @@ export default class ScrummyAPI {
   init() {
     window.onbeforeunload = () => this.handleDisconnect();
     this.ws.onmessage = (message) => this.handleMessage(message);
-    this.ws.onopen = () => this.getPlayerCount();
+    this.ws.onopen = () => this.handleOpen();
+    this.ws.onclose = () => this.reportConnectionStatus();
+  }
+
+  handleOpen() {
+    this.getPlayerCount();
+    // Hide andy errors shown during a reconnection.
+    this.dispatchErrorHide();
   }
 
   /**
@@ -90,6 +97,21 @@ export default class ScrummyAPI {
         nickname: this.store.getState().game.nickname,
       });
     }
+  }
+
+  /**
+   * reportConnectionStatus
+   *   Shows a message regarding reconnection.
+   *
+   * @return {undefined}
+   */
+  reportConnectionStatus() {
+    this.store.dispatch({
+      type: 'setError',
+      data: {
+        message: 'Experiencing connection issues. Attempting to reconnect to the game.',
+      },
+    });
   }
 
   /**

@@ -5,14 +5,10 @@ import sinon from 'sinon';
 import thunkMiddleware from 'redux-thunk';
 const mockStore = configureStore([]);
 
-test.before(() => {
-  global.ga = () => {};
-});
-
 test('onmessage dispatches respective action to store', t => {
   const payload = { value: '13', type: 'placeVote' };
   const store = mockStore({});
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   scrummyAPI.init();
   scrummyAPI.ws.onmessage({ data: JSON.stringify(payload) });
   const actions = store.getActions();
@@ -23,7 +19,7 @@ test('onmessage calls error when error message is recieved', t => {
   t.plan(1);
   const payload = { message: 'Something bad happened', type: 'error' };
   const store = mockStore({});
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   scrummyAPI.init();
   scrummyAPI.dispatchErrorHide = () => { t.pass(); };
   scrummyAPI.ws.onmessage({ data: JSON.stringify(payload) });
@@ -37,7 +33,7 @@ test('onbeforeunload calls emits a disconnect message with game and nickname', t
     nickname: 'name',
     users: [{ nickname: 'name' }],
   } });
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   scrummyAPI.init();
   scrummyAPI.emit = (type, data) => {
     t.is(type, 'disconnect');
@@ -51,7 +47,7 @@ test('onbeforeunload does nothing if not in a game', t => {
   t.plan(1);
   const payload = { message: 'Something bad happened', type: 'error' };
   const store = mockStore({ game: {} });
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   scrummyAPI.init();
   sinon.spy(scrummyAPI, 'emit');
   t.true(scrummyAPI.emit.notCalled);
@@ -69,7 +65,7 @@ test('emit sends message', t => {
       t.is(JSON.stringify(payload), msg);
     }
   };
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   scrummyAPI.init();
   scrummyAPI.emit(payload.type, payload.data);
 });
@@ -77,7 +73,7 @@ test('emit sends message', t => {
 test.cb('error dispatch actions', t => {
   t.plan(1);
   const store = mockStore({});
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   scrummyAPI.dispatchErrorHide(1);
   // Wait for all actions to be done.
   setTimeout(() => {
@@ -90,7 +86,7 @@ test.cb('error dispatch actions', t => {
 test.cb('error dispatch actions, use default', t => {
   t.plan(1);
   const store = mockStore({});
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   scrummyAPI.dispatchErrorHide();
   // Wait for all actions to be done.
   setTimeout(() => {
@@ -107,7 +103,7 @@ test('setHash is called when you sign in', t => {
     data: { nickname: 'Coach', users: [{ nickname: 'Coach' }], points: ['1', '2', '3'] },
   };
   const store = mockStore({});
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   scrummyAPI.init();
   scrummyAPI.setHash = () => { t.pass(); };
   scrummyAPI.ws.onmessage({ data: JSON.stringify(payload) });
@@ -117,7 +113,7 @@ test('setHash pushes game name to history', t => {
   t.plan(2);
   const data = { data: { game: 'gamename' } };
   const store = mockStore({});
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   const spy = sinon.spy(history, 'pushState');
   scrummyAPI.setHash(data.data.game);
   t.true(spy.calledOnce);
@@ -128,7 +124,7 @@ test('onopen gets the player count if game is set', t => {
   t.plan(2);
   const game = 'gamename';
   const store = mockStore({ game: { game } });
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   scrummyAPI.init();
   scrummyAPI.emit = (type, data) => {
     t.is(type, 'getPlayerCount');
@@ -140,7 +136,7 @@ test('onopen gets the player count if game is set', t => {
 test('onopen does not get player count count if game is not set', t => {
   t.plan(1);
   const store = mockStore({ game: { game: '' } });
-  const scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   scrummyAPI.init();
   const spy = sinon.spy(scrummyAPI, 'emit');
   scrummyAPI.ws.onopen();
@@ -155,7 +151,7 @@ test('keyboard shortcuts dispatch respective actions', t => {
     preventDefault: () => {},
   };
   const store = configureStore([thunkMiddleware])({ game: { game, nickname } });
-  window.scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  window.scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   window.scrummyAPI.init();
   window.scrummyAPI.emit = type => t.is(type, 'reveal');
   window.scrummyAPI.handleKeyboardShortcuts({ key: 'Enter', ...stubs });
@@ -176,7 +172,7 @@ test('A keyup event dispatches respective actions', t => {
   };
   const store = configureStore([thunkMiddleware])({ game: { game, nickname } });
   const event = document.createEvent('HTMLEvents');
-  window.scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  window.scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   window.scrummyAPI.init();
   window.scrummyAPI.emit = type => t.is(type, 'reveal');
   window.scrummyAPI.handleKeyboardShortcuts({ key: 'Enter', ...stubs });
@@ -194,7 +190,7 @@ test('inconsequential keyup event does not dispatch actions', t => {
     preventDefault: spy,
   };
   const store = mockStore({});
-  window.scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  window.scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   window.scrummyAPI.init();
   window.scrummyAPI.handleKeyboardShortcuts({ key: 'ArrowLeft', ...stubs });
   const actions = store.getActions();
@@ -205,7 +201,7 @@ test('inconsequential keyup event does not dispatch actions', t => {
 
 test('keyboard shortcut handler is stopped if default prevented', t => {
   const store = mockStore({});
-  window.scrummyAPI = new ScrummyAPI('ws://fake.com', store);
+  window.scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
   window.scrummyAPI.init();
   window.scrummyAPI.handleKeyboardShortcuts({ defaultPrevented: true });
   const actions = store.getActions();

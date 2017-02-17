@@ -10,6 +10,7 @@ export const game = (state = {}, action) => {
     case messageTypes.clientRevoke:
     case messageTypes.clientDisconnect:
     case messageTypes.error:
+    case 'setError':
     case 'changeGameName':
       return { ...state, ...action.data };
     case messageTypes.placeVote:

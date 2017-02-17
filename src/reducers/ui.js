@@ -12,6 +12,8 @@ export const ui = (state = {}, action) => {
       return { ...state, showMessage: true };
     case messageTypes.playerCount:
       return { ...state, ...action.data };
+    case 'setError':
+      return { ...state, showMessage: true };
     case 'hideError':
       return { ...state, showMessage: false };
     default:

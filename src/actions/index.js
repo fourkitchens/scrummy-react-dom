@@ -61,3 +61,10 @@ export function changeGameName(game) {
     window.scrummyAPI.emit('getPlayerCount', { game });
   };
 }
+
+export function setError(message) {
+  return {
+    type: 'setError',
+    data: { message },
+  };
+}

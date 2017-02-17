@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
+import ReconnectingWebsocket from 'reconnecting-websocket';
 import rootReducer from './reducers';
 import ScrummyAPI from './actions/ScrummyAPI';
 import App from './components/App';
@@ -23,7 +24,7 @@ const initialState = {
   },
   ui: {
     revealed: false,
-    loggedIn: false,
+    signedIn: false,
   },
 };
 
@@ -33,7 +34,7 @@ const startUp = () => {
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : // eslint-disable-line no-underscore-dangle, max-len
     undefined;
   const store = setup(rootReducer, initialState, devTools);
-  window.scrummyAPI = new ScrummyAPI(config.apiUrl, store);
+  window.scrummyAPI = new ScrummyAPI(config.apiUrl, store, ReconnectingWebsocket);
   window.scrummyAPI.init();
   return store;
 };
