@@ -208,3 +208,17 @@ test('keyboard shortcut handler is stopped if default prevented', t => {
   t.is(actions.length, 0);
   delete window.scrummyAPI;
 });
+
+test('reportConnectionStatus dispatches setError', t => {
+  const store = mockStore({});
+  const message = 'Experiencing connection issues. Attempting to reconnect to the game.';
+  window.scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
+  window.scrummyAPI.reportConnectionStatus();
+  const actions = store.getActions();
+  t.is(actions.length, 1);
+  t.deepEqual(actions[0], {
+    type: 'setError',
+    data: { message },
+  });
+  delete window.scrummyAPI;
+});

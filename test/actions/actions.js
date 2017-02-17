@@ -1,6 +1,6 @@
 import test from 'ava';
 import sinon from 'sinon';
-import { vote, login, reveal, reset, changeGameName } from '../../src/actions';
+import { vote, login, reveal, reset, changeGameName, setError } from '../../src/actions';
 import messageTypes from '../../src/actions/messageTypes';
 
 test.beforeEach(() => {
@@ -121,3 +121,13 @@ test('changeGameName action dispatches changeGameName and emits getPlayerCount',
   t.true(window.scrummyAPI.emit.calledOnce);
   t.true(window.scrummyAPI.emit.calledWith('getPlayerCount', { game }));
 });
+
+test('setError action creator', t => {
+  const message = 'This is an error message';
+  const action = setError(message);
+  t.deepEqual(action, {
+    type: 'setError',
+    data: { message },
+  });
+});
+
