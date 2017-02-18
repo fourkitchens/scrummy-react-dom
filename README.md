@@ -12,6 +12,11 @@
 [![Four Kitchens](https://avatars.githubusercontent.com/u/348885?s=130)](https://github.com/fourkitchens) | [![Taylor](https://avatars.githubusercontent.com/u/1486573?s=130)](https://github.com/tsmith512) | [![Flip](https://avatars.githubusercontent.com/u/1306968?s=130)](https://github.com/flipactual) | [![Luke](https://avatars.githubusercontent.com/u/1127238?s=130)](https://github.com/infiniteluke)
 --- | --- | --- | ---
 [Four Kitchens](https://github.com/fourkitchens) | [Taylor](https://github.com/tsmith512) | [Flip](https://github.com/flipactual) | [Luke](https://github.com/infiniteluke)
+## Setup
+
+* `yarn` For faster, deterministic, dependency management, install [yarn](https://yarnpkg.com/en/docs/install). For more information on how to use yarn see the [docs](https://yarnpkg.com/en/docs/cli/).
+* `npm install` is not necessary if you use `yarn` but it also works.
+
 ## Storybook
 
 [Storybook](https://github.com/kadirahq/react-storybook) allows one to develop/style components in isolation.
@@ -27,9 +32,6 @@ Each component directory contains a respective `story.js` file.
 Each component directory contains a respective `<Component>.scss` file. `src/scss/main.scss` contains all component imports along with other global imports.
 
 ## Scripts
-
-### Note
-For faster, deterministic, dependency management, install [yarn](https://yarnpkg.com/en/docs/install) and run `yarn` to install dependencies. For more information on how to use yarn see the [docs](https://yarnpkg.com/en/docs/cli/).
 
 ### `build` – build the app
 
@@ -115,6 +117,18 @@ npm run storybook
 ```sh
 npm run storybook-build
 ```
+
+## Local Backend Server Setup:
+
+### Note:
+* The deployed application connects to ws://scrummy-server.herokuapp.com.
+
+### Scrummy Server:
+* Copy `config/example.local.yaml` to `config/local.yaml` to connect to the [Scrummy Server](https://github.com/fourkitchens/scrummy-server).
+* In the Scrummy Server repo change `config/default.yml` to have a port line that reads `port: 8081`.
+* Open two terminal windows and start up both apps with `npm run start` in the projects' root directories.
+* Go to: http://localhost:8080/webpack-dev-server/
+* Play Scrummy.
 
 ## License
 
