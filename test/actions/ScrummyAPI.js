@@ -133,6 +133,21 @@ test('onopen gets the player count if game is set', t => {
   scrummyAPI.ws.onopen();
 });
 
+test('onclose reports the connection status', t => {
+  t.plan(2);
+  const message = 'Experiencing connection issues. Attempting to reconnect to the game.';
+  const store = mockStore({});
+  const scrummyAPI = new ScrummyAPI('ws://fake.com', store, WebSocket);
+  scrummyAPI.init();
+  scrummyAPI.ws.onclose();
+  const actions = store.getActions();
+  t.is(actions.length, 1);
+  t.deepEqual(actions[0], {
+    type: 'setError',
+    data: { message },
+  });
+});
+
 test('onopen does not get player count count if game is not set', t => {
   t.plan(1);
   const store = mockStore({ game: { game: '' } });

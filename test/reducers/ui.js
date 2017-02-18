@@ -50,3 +50,10 @@ test('UI reducer handles hideError', reducerTest(
   { type: 'hideError' },
   { showMessage: false }
 ));
+
+test('UI reducer handles setError', reducerTest(
+  ui,
+  { showMessage: false },
+  { type: 'setError' },
+  { showMessage: true }
+));
