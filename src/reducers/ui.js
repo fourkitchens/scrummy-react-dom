@@ -9,11 +9,10 @@ export const ui = (state = {}, action) => {
     case messageTypes.youSignedIn:
       return { ...state, signedIn: true };
     case messageTypes.error:
+    case 'setError':
       return { ...state, showMessage: true };
     case messageTypes.playerCount:
       return { ...state, ...action.data };
-    case 'setError':
-      return { ...state, showMessage: true };
     case 'hideError':
       return { ...state, showMessage: false };
     default:
