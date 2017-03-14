@@ -33,7 +33,8 @@ if (NODE_ENV === 'production') {
     },
   }));
   plugins.push(new ExtractTextPlugin('scrummy.[hash].css'));
-  plugins.push(new ImageminPlugin(['/.*/', './icons-*/**']));
+  plugins.push(new ImageminPlugin({ test: '/.*/' }));
+  plugins.push(new ImageminPlugin({ test: './icons-*/**' }));
   plugins.push(new StyleExtHtmlWebpackPlugin());
 }
 
