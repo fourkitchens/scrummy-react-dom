@@ -112,10 +112,16 @@ npm run write-readme
 npm run storybook
 ```
 
-### `storybook-build` – build storybook as static site
+### `build-storybook` – build storybook as static site
 
 ```sh
-npm run storybook-build
+npm run build-storybook
+```
+
+### `analyse-bundle` – show bundled content as convenient interactive zoomable treemap
+
+```sh
+npm run analyse-bundle
 ```
 
 ## Local Backend Server Setup:
