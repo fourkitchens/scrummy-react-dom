@@ -5,6 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
 
 // Plugins
@@ -35,6 +36,8 @@ if (NODE_ENV === 'production') {
   plugins.push(new ExtractTextPlugin('scrummy.[hash].css'));
   plugins.push(new ImageminPlugin('./**/*'));
   plugins.push(new StyleExtHtmlWebpackPlugin());
+} else if (NODE_ENV === 'analyse-bundle') {
+  plugins.push(new BundleAnalyzerPlugin());
 }
 
 // Loaders
