@@ -17,7 +17,7 @@ plugins.push(new HtmlWebpackPlugin({
   filename: 'index.html',
 }));
 
-if (NODE_ENV === 'production') {
+if (NODE_ENV === 'production' || NODE_ENV === 'analyse-bundle') {
   plugins.push(new FaviconsWebpackPlugin({
     logo: './src/assets/logo.png',
     inject: true,
@@ -36,7 +36,8 @@ if (NODE_ENV === 'production') {
   plugins.push(new ExtractTextPlugin('scrummy.[hash].css'));
   plugins.push(new ImageminPlugin('./**/*'));
   plugins.push(new StyleExtHtmlWebpackPlugin());
-} else if (NODE_ENV === 'analyse-bundle') {
+}
+if (NODE_ENV === 'analyse-bundle') {
   plugins.push(new BundleAnalyzerPlugin());
 }
 
@@ -57,7 +58,7 @@ const loaders = [
   },
 ];
 
-if (NODE_ENV === 'production') {
+if (NODE_ENV === 'production' || NODE_ENV === 'analyse-bundle') {
   loaders.push({
     test: /\.scss$/,
     loader: ExtractTextPlugin.extract('style', ['css', 'postcss', 'sass']),
