@@ -9,6 +9,7 @@ export function vote(value) {
         game: getState().game.game,
         nickname: getState().game.nickname,
       });
+      ga('send', 'event', 'Actions', 'vote', getState().game.game, value);
     } else {
       dispatch({ type: messageTypes.placeVote, value });
       window.scrummyAPI.emit(messageTypes.placeVote, {
@@ -16,8 +17,8 @@ export function vote(value) {
         game: getState().game.game,
         nickname: getState().game.nickname,
       });
+      ga('send', 'event', 'Actions', 'revokeVote', getState().game.game);
     }
-    ga('send', 'event', 'Actions', 'vote', getState().game.game);
   };
 }
 
