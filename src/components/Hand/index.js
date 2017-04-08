@@ -1,5 +1,5 @@
-import React from 'react';
-import Card from '../../containers/Card';
+import React from "react";
+import Card from "../../containers/Card";
 
 const Hand = ({ nickname, points }) => (
   <section id="playersHand">
@@ -12,7 +12,7 @@ const Hand = ({ nickname, points }) => (
 
 Hand.propTypes = {
   nickname: React.PropTypes.string.isRequired,
-  points: React.PropTypes.array.isRequired,
+  points: React.PropTypes.array.isRequired
 };
 
 export default Hand;

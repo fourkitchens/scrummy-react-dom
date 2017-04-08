@@ -1,4 +1,4 @@
-import messageTypes from '../actions/messageTypes';
+import messageTypes from "../actions/messageTypes";
 
 export const game = (state = {}, action) => {
   switch (action.type) {
@@ -10,11 +10,14 @@ export const game = (state = {}, action) => {
     case messageTypes.clientRevoke:
     case messageTypes.clientDisconnect:
     case messageTypes.error:
-    case 'setError':
-    case 'changeGameName':
+    case "setError":
+    case "changeGameName":
       return { ...state, ...action.data };
     case messageTypes.placeVote:
-      return { ...state, votes: { [state.nickname]: action.value, ...state.votes } };
+      return {
+        ...state,
+        votes: { [state.nickname]: action.value, ...state.votes }
+      };
     default:
       return state;
   }

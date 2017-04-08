@@ -1,11 +1,18 @@
-import React from 'react';
+import React from "react";
 
-const Login = ({ welcomeText, nickname, game, onPlayClick, onWatchClick, onChangeGameName }) => (
+const Login = (
+  { welcomeText, nickname, game, onPlayClick, onWatchClick, onChangeGameName }
+) => (
   <section id="login" className="signin-form">
     <h2>{welcomeText}</h2>
     <div id="loginActions">
       <form>
-        <input type="text" id="txtNickname" placeholder="Nickname?" defaultValue={nickname} />
+        <input
+          type="text"
+          id="txtNickname"
+          placeholder="Nickname?"
+          defaultValue={nickname}
+        />
         <input
           type="text"
           id="txtGame"
@@ -42,7 +49,7 @@ Login.propTypes = {
   game: React.PropTypes.string,
   onPlayClick: React.PropTypes.func.isRequired,
   onWatchClick: React.PropTypes.func.isRequired,
-  onChangeGameName: React.PropTypes.func.isRequired,
+  onChangeGameName: React.PropTypes.func.isRequired
 };
 
 export default Login;
