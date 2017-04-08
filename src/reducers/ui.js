@@ -1,4 +1,4 @@
-import messageTypes from '../actions/messageTypes';
+import messageTypes from "../actions/messageTypes";
 
 export const ui = (state = {}, action) => {
   switch (action.type) {
@@ -9,11 +9,11 @@ export const ui = (state = {}, action) => {
     case messageTypes.youSignedIn:
       return { ...state, signedIn: true };
     case messageTypes.error:
-    case 'setError':
+    case "setError":
       return { ...state, showMessage: true };
     case messageTypes.playerCount:
       return { ...state, ...action.data };
-    case 'hideError':
+    case "hideError":
       return { ...state, showMessage: false };
     default:
       return state;

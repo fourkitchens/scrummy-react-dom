@@ -1,133 +1,151 @@
-import test from 'ava';
-import sinon from 'sinon';
-import { vote, login, reveal, reset, changeGameName, setError } from '../../src/actions';
-import messageTypes from '../../src/actions/messageTypes';
+import test from "ava";
+import sinon from "sinon";
+import {
+  vote,
+  login,
+  reveal,
+  reset,
+  changeGameName,
+  setError
+} from "../../src/actions";
+import messageTypes from "../../src/actions/messageTypes";
 
 test.beforeEach(() => {
   window.scrummyAPI = {};
   window.scrummyAPI.emit = sinon.spy();
 });
 
-test('vote action dispatches/emits placeVote', t => {
+test("vote action dispatches/emits placeVote", t => {
   const value = 5;
   const dispatch = sinon.spy();
   const state = {
     game: {
-      game: 'blue',
-      nickname: 'todd',
-      votes: { todd: 3 },
-    },
+      game: "blue",
+      nickname: "todd",
+      votes: { todd: 3 }
+    }
   };
   vote(value)(dispatch, () => state);
   t.true(dispatch.calledOnce);
   t.true(dispatch.calledWith({ type: messageTypes.placeVote, value }));
   t.true(window.scrummyAPI.emit.calledOnce);
-  t.true(window.scrummyAPI.emit.calledWith(messageTypes.placeVote, {
-    vote: value,
-    game: state.game.game,
-    nickname: state.game.nickname,
-  }));
+  t.true(
+    window.scrummyAPI.emit.calledWith(messageTypes.placeVote, {
+      vote: value,
+      game: state.game.game,
+      nickname: state.game.nickname
+    })
+  );
 });
 
-test('vote action dispatches/emits revoke when vote value is same', t => {
+test("vote action dispatches/emits revoke when vote value is same", t => {
   const value = 3;
   const dispatch = sinon.spy();
   const state = {
     game: {
-      game: 'blue',
-      nickname: 'todd',
-      votes: { todd: value },
-    },
+      game: "blue",
+      nickname: "todd",
+      votes: { todd: value }
+    }
   };
   vote(value)(dispatch, () => state);
   // t.true(dispatch.calledWith({ type: messageTypes.revokeVote }));
   t.true(window.scrummyAPI.emit.calledOnce);
-  t.true(window.scrummyAPI.emit.calledWith(messageTypes.revokeVote, {
-    game: state.game.game,
-    nickname: state.game.nickname,
-  }));
+  t.true(
+    window.scrummyAPI.emit.calledWith(messageTypes.revokeVote, {
+      game: state.game.game,
+      nickname: state.game.nickname
+    })
+  );
 });
 
-test('login action emits signIn', t => {
-  const nickname = 'suzy';
-  const game = 'green';
+test("login action emits signIn", t => {
+  const nickname = "suzy";
+  const game = "green";
   const dispatch = sinon.spy();
   login(nickname, game)(dispatch);
   t.true(window.scrummyAPI.emit.calledOnce);
-  t.true(window.scrummyAPI.emit.calledWith(messageTypes.signIn, {
-    game,
-    nickname,
-    watch: false,
-  }));
+  t.true(
+    window.scrummyAPI.emit.calledWith(messageTypes.signIn, {
+      game,
+      nickname,
+      watch: false
+    })
+  );
 });
 
-test('login action emits signIn with watch property', t => {
-  const nickname = 'suzy';
-  const game = 'green';
+test("login action emits signIn with watch property", t => {
+  const nickname = "suzy";
+  const game = "green";
   const dispatch = sinon.spy();
   login(nickname, game, true)(dispatch);
   t.true(window.scrummyAPI.emit.calledOnce);
-  t.true(window.scrummyAPI.emit.calledWith(messageTypes.signIn, {
-    game,
-    nickname,
-    watch: true,
-  }));
+  t.true(
+    window.scrummyAPI.emit.calledWith(messageTypes.signIn, {
+      game,
+      nickname,
+      watch: true
+    })
+  );
 });
 
-test('reveal action dispatches/emits reveal', t => {
+test("reveal action dispatches/emits reveal", t => {
   const dispatch = sinon.spy();
   const state = {
     game: {
-      game: 'blue',
-      nickname: 'todd',
-      votes: { todd: '5' },
-    },
+      game: "blue",
+      nickname: "todd",
+      votes: { todd: "5" }
+    }
   };
   reveal()(dispatch, () => state);
   t.true(dispatch.calledOnce);
   t.true(dispatch.calledWith({ type: messageTypes.reveal }));
   t.true(window.scrummyAPI.emit.calledOnce);
-  t.true(window.scrummyAPI.emit.calledWith(messageTypes.reveal, {
-    game: state.game.game,
-    nickname: state.game.nickname,
-  }));
+  t.true(
+    window.scrummyAPI.emit.calledWith(messageTypes.reveal, {
+      game: state.game.game,
+      nickname: state.game.nickname
+    })
+  );
 });
 
-test('reset action dispatches/emits reset', t => {
+test("reset action dispatches/emits reset", t => {
   const dispatch = sinon.spy();
   const state = {
     game: {
-      game: 'blue',
-      nickname: 'todd',
-      votes: { todd: '5' },
-    },
+      game: "blue",
+      nickname: "todd",
+      votes: { todd: "5" }
+    }
   };
   reset()(dispatch, () => state);
   t.true(dispatch.calledOnce);
   t.true(dispatch.calledWith({ type: messageTypes.reset }));
   t.true(window.scrummyAPI.emit.calledOnce);
-  t.true(window.scrummyAPI.emit.calledWith(messageTypes.reset, {
-    game: state.game.game,
-    nickname: state.game.nickname,
-  }));
+  t.true(
+    window.scrummyAPI.emit.calledWith(messageTypes.reset, {
+      game: state.game.game,
+      nickname: state.game.nickname
+    })
+  );
 });
 
-test('changeGameName action dispatches changeGameName and emits getPlayerCount', t => {
+test("changeGameName action dispatches changeGameName and emits getPlayerCount", t => {
   const dispatch = sinon.spy();
-  const game = 'blue';
+  const game = "blue";
   changeGameName(game)(dispatch);
   t.true(dispatch.calledOnce);
-  t.true(dispatch.calledWith({ type: 'changeGameName', data: { game } }));
+  t.true(dispatch.calledWith({ type: "changeGameName", data: { game } }));
   t.true(window.scrummyAPI.emit.calledOnce);
-  t.true(window.scrummyAPI.emit.calledWith('getPlayerCount', { game }));
+  t.true(window.scrummyAPI.emit.calledWith("getPlayerCount", { game }));
 });
 
-test('setError action creator', t => {
-  const message = 'This is an error message';
+test("setError action creator", t => {
+  const message = "This is an error message";
   const action = setError(message);
   t.deepEqual(action, {
-    type: 'setError',
-    data: { message },
+    type: "setError",
+    data: { message }
   });
 });
-

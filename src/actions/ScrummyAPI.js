@@ -1,7 +1,7 @@
-import { reset, reveal } from './';
+import { reset, reveal } from "./";
 
 export default class ScrummyAPI {
- /**
+  /**
    * constructor
    *   Creates a connection to the Scrummy API.
    * @return {undefined}
@@ -19,7 +19,7 @@ export default class ScrummyAPI {
    */
   init() {
     window.onbeforeunload = () => this.handleDisconnect();
-    this.ws.onmessage = (message) => this.handleMessage(message);
+    this.ws.onmessage = message => this.handleMessage(message);
     this.ws.onopen = () => this.handleOpen();
     this.ws.onclose = () => this.reportConnectionStatus();
   }
@@ -41,9 +41,9 @@ export default class ScrummyAPI {
   handleKeyboardShortcuts(event) {
     if (event.defaultPrevented) {
       return;
-    } else if (event.key === 'Enter') {
+    } else if (event.key === "Enter") {
       this.store.dispatch(reveal());
-    } else if (event.key === 'Escape') {
+    } else if (event.key === "Escape") {
       this.store.dispatch(reset());
     }
     event.preventDefault();
@@ -59,12 +59,16 @@ export default class ScrummyAPI {
    */
   handleMessage(message) {
     const action = JSON.parse(message.data);
-    if (action.type === 'error') {
+    if (action.type === "error") {
       clearTimeout(this.errorTimeout);
       this.errorTimeout = this.dispatchErrorHide();
-    } else if (action.type === 'youSignedIn') {
+    } else if (action.type === "youSignedIn") {
       this.setHash(action.data.game);
-      window.addEventListener('keyup', () => this.handleKeyboardShortcuts.bind(this), true);
+      window.addEventListener(
+        "keyup",
+        () => this.handleKeyboardShortcuts.bind(this),
+        true
+      );
     }
     this.store.dispatch(action);
   }
@@ -79,7 +83,7 @@ export default class ScrummyAPI {
    */
   getPlayerCount() {
     if (!!this.store.getState().game.game) {
-      this.emit('getPlayerCount', { game: this.store.getState().game.game });
+      this.emit("getPlayerCount", { game: this.store.getState().game.game });
     }
   }
 
@@ -90,11 +94,12 @@ export default class ScrummyAPI {
    * @return {undefined}
    */
   handleDisconnect() {
-    if (this.store.getState().game.game &&
-        this.store.getState().game.users.length) {
-      this.emit('disconnect', {
+    if (
+      this.store.getState().game.game && this.store.getState().game.users.length
+    ) {
+      this.emit("disconnect", {
         game: this.store.getState().game.game,
-        nickname: this.store.getState().game.nickname,
+        nickname: this.store.getState().game.nickname
       });
     }
   }
@@ -107,10 +112,10 @@ export default class ScrummyAPI {
    */
   reportConnectionStatus() {
     this.store.dispatch({
-      type: 'setError',
+      type: "setError",
       data: {
-        message: 'Experiencing connection issues. Attempting to reconnect to the game.',
-      },
+        message: "Experiencing connection issues. Attempting to reconnect to the game."
+      }
     });
   }
 
@@ -138,7 +143,10 @@ export default class ScrummyAPI {
    *  timeoutId
    */
   dispatchErrorHide(timeoutMs = 3000) {
-    return setTimeout(() => this.store.dispatch({ type: 'hideError' }), timeoutMs);
+    return setTimeout(
+      () => this.store.dispatch({ type: "hideError" }),
+      timeoutMs
+    );
   }
 
   /**
@@ -150,6 +158,6 @@ export default class ScrummyAPI {
    * @return {undefined}
    */
   setHash(game) {
-    history.pushState({ game }, 'New game', `#${game}`);
+    history.pushState({ game }, "New game", `#${game}`);
   }
 }

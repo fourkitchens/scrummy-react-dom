@@ -1,9 +1,9 @@
-import { connect } from 'react-redux';
-import Hand from '../components/Hand';
+import { connect } from "react-redux";
+import Hand from "../components/Hand";
 
-export const mapStateToProps = (state) => ({
+export const mapStateToProps = state => ({
   points: state.game.points,
-  nickname: state.game.nickname,
+  nickname: state.game.nickname
 });
 
 export default connect(mapStateToProps)(Hand);
