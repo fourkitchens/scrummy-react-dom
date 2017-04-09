@@ -13,9 +13,6 @@ after_success:
 before_deploy:
 - yarn run build
 - find dist \( -iname '*.html' -o -iname '*.css' -o -iname '*.js' \) -exec gzip -9 -n {} \; -exec mv {}.gz {} \;
-branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
 deploy:
   provider: s3
   access_key_id: "$AWS_ACCESS_KEY"

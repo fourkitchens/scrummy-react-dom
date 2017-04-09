@@ -39,9 +39,7 @@ export const mapDispatchToProps = dispatch => ({
       )
     );
   },
-  onChangeGameName: event => {
-    dispatch(changeGameName(event.target.value));
-  }
+  onChangeGameName: event => dispatch(changeGameName(event.target.value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

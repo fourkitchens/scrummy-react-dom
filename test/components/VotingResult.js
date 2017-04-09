@@ -14,8 +14,8 @@ test("Watch users do not show in VotingResult client list", t => {
       users={USERS}
       votes={{}}
       revealed={false}
-      onReveal={() => {}}
-      onReset={() => {}}
+      reveal={() => {}}
+      reset={() => {}}
     />
   );
   t.is(wrapper.find("#clients").length, 1);
@@ -27,21 +27,21 @@ test("Clicking button calls respective click handler", t => {
   const VOTES = {
     "John Done": 5
   };
-  const onReveal = sinon.spy();
-  const onReset = sinon.spy();
+  const reveal = sinon.spy();
+  const reset = sinon.spy();
   const wrapper = shallow(
     <VotingResult
       users={USERS}
       votes={VOTES}
       revealed={false}
-      onReveal={onReveal}
-      onReset={onReset}
+      reveal={reveal}
+      reset={reset}
     />
   );
   wrapper.find("#btnReveal").simulate("click");
   wrapper.find("#btnReset").simulate("click");
-  t.true(onReveal.calledOnce);
-  t.true(onReset.calledOnce);
+  t.true(reveal.calledOnce);
+  t.true(reset.calledOnce);
 });
 
 test("Results do not show if not revealed", t => {
@@ -50,15 +50,15 @@ test("Results do not show if not revealed", t => {
   const VOTES = {
     "John Done": 5
   };
-  const onReveal = sinon.spy();
-  const onReset = sinon.spy();
+  const reveal = sinon.spy();
+  const reset = sinon.spy();
   const wrapper = render(
     <VotingResult
       users={USERS}
       votes={VOTES}
       revealed={false}
-      onReveal={onReveal}
-      onReset={onReset}
+      reveal={reveal}
+      reset={reset}
     />
   );
   const text = wrapper.find(".vote").text();
@@ -71,14 +71,14 @@ test("Results show if revealed and not watching", t => {
   const VOTES = {
     "John Doe": "5"
   };
-  const onReveal = sinon.spy();
-  const onReset = sinon.spy();
+  const reveal = sinon.spy();
+  const reset = sinon.spy();
   const wrapper = render(
     <VotingResult
       users={USERS}
       votes={VOTES}
-      onReveal={onReveal}
-      onReset={onReset}
+      reveal={reveal}
+      reset={reset}
       revealed
     />
   );
@@ -99,8 +99,8 @@ test("Game url text is selected if clicked", t => {
       users={[]}
       votes={{}}
       revealed={false}
-      onReveal={() => {}}
-      onReset={() => {}}
+      reveal={() => {}}
+      reset={() => {}}
     />
   );
   wrapper

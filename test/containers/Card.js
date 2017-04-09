@@ -5,7 +5,7 @@ import { mapDispatchToProps, mapStateToProps } from "../../src/containers/Card";
 test("Vote mapDispatchToProps", t => {
   const VOTE = "5";
   const dispatch = sinon.spy();
-  mapDispatchToProps(dispatch, { value: VOTE }).onVote();
+  mapDispatchToProps(dispatch, { value: VOTE }).vote();
   t.true(dispatch.calledOnce);
 });
 

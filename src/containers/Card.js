@@ -8,9 +8,7 @@ export const mapStateToProps = (state, ownProps) => ({
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  onVote: () => {
-    dispatch(vote(ownProps.value));
-  }
+  vote: () => dispatch(vote(ownProps.value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

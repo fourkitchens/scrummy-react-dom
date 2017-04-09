@@ -3,11 +3,11 @@ import classNames from "classnames";
 import Client from "../Client";
 import { selectText } from "../../lib/util";
 
-const VotingResult = ({ users, votes, revealed, onReveal, onReset }) => (
+const VotingResult = ({ users, votes, revealed, reveal, reset }) => (
   <section id="votingResult" className={classNames({ reveal: revealed })}>
     <div id="votingActions">
-      <input type="button" id="btnReveal" value="Reveal" onClick={onReveal} />
-      <input type="button" id="btnReset" value="Reset" onClick={onReset} />
+      <input type="button" id="btnReveal" value="Reveal" onClick={reveal} />
+      <input type="button" id="btnReset" value="Reset" onClick={reset} />
       <div id="gameLink">
         <input
           type="text"
@@ -49,8 +49,8 @@ VotingResult.propTypes = {
   users: React.PropTypes.array.isRequired,
   votes: React.PropTypes.object.isRequired,
   revealed: React.PropTypes.bool.isRequired,
-  onReveal: React.PropTypes.func.isRequired,
-  onReset: React.PropTypes.func.isRequired
+  reveal: React.PropTypes.func.isRequired,
+  reset: React.PropTypes.func.isRequired
 };
 
 export default VotingResult;
