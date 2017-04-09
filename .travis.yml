@@ -1,16 +1,17 @@
+sudo: false
 language: node_js
 node_js: 6
-install: npm i
+install: yarn
 script:
-- npm run lint-code
-- npm run lint-writing
-- npm run check-coverage
+- yarn run lint-code
+- yarn run lint-writing
+- yarn run check-coverage
 after_success:
-- npm run coverage
-- npm run quality
-- npm run semantic-release
+- yarn run coverage
+- yarn run quality
+- yarn run semantic-release
 before_deploy:
-- npm run build
+- yarn run build
 - find dist \( -iname '*.html' -o -iname '*.css' -o -iname '*.js' \) -exec gzip -9 -n {} \; -exec mv {}.gz {} \;
 branches:
   except:
