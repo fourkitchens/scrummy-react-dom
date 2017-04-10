@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 
-const Card = ({ value, selected, onVote }) => (
-  <div className={classNames({ card: true, selected })} onClick={onVote}>
+const Card = ({ value, selected, vote }) => (
+  <div className={classNames({ card: true, selected })} onClick={vote}>
     <span className="card-text">{value}</span>
   </div>
 );
@@ -10,7 +10,7 @@ const Card = ({ value, selected, onVote }) => (
 Card.propTypes = {
   value: React.PropTypes.string.isRequired,
   selected: React.PropTypes.bool,
-  onVote: React.PropTypes.func
+  vote: React.PropTypes.func
 };
 
 export default Card;

@@ -8,7 +8,7 @@ import thunkMiddleware from "redux-thunk";
 import ReconnectingWebsocket from "reconnecting-websocket";
 import rootReducer from "./reducers";
 import ScrummyAPI from "./actions/ScrummyAPI";
-import App from "./components/App";
+import App from "./containers/App";
 import "./scss/main.scss";
 
 const nickname = Cookies.get("nickname") || "";
