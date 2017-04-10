@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const Message = ({ message, showMessage }) => (
@@ -6,8 +7,8 @@ const Message = ({ message, showMessage }) => (
 );
 
 Message.propTypes = {
-  message: React.PropTypes.string,
-  showMessage: React.PropTypes.bool
+  message: PropTypes.string,
+  showMessage: PropTypes.bool
 };
 
 export default Message;

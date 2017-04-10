@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-indent, max-len */
-
 import React from "react";
 
 const Readme = () => (

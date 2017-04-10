@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Login = (
   { welcomeText, nickname, game, onPlayClick, onWatchClick, onChangeGameName }
@@ -44,12 +45,12 @@ const Login = (
 );
 
 Login.propTypes = {
-  welcomeText: React.PropTypes.string.isRequired,
-  nickname: React.PropTypes.string,
-  game: React.PropTypes.string,
-  onPlayClick: React.PropTypes.func.isRequired,
-  onWatchClick: React.PropTypes.func.isRequired,
-  onChangeGameName: React.PropTypes.func.isRequired
+  welcomeText: PropTypes.string.isRequired,
+  nickname: PropTypes.string,
+  game: PropTypes.string,
+  onPlayClick: PropTypes.func.isRequired,
+  onWatchClick: PropTypes.func.isRequired,
+  onChangeGameName: PropTypes.func.isRequired
 };
 
 export default Login;

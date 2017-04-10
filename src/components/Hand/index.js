@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Card from "../../containers/Card";
 
 const Hand = ({ nickname, points, vote }) => (
@@ -13,9 +14,9 @@ const Hand = ({ nickname, points, vote }) => (
 );
 
 Hand.propTypes = {
-  nickname: React.PropTypes.string.isRequired,
-  points: React.PropTypes.array.isRequired,
-  vote: React.PropTypes.func.isRequired
+  nickname: PropTypes.string.isRequired,
+  points: PropTypes.array.isRequired,
+  vote: PropTypes.func.isRequired
 };
 
 export default Hand;

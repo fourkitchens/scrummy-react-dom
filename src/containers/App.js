@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as GameActions from "../actions";
@@ -39,10 +40,10 @@ const App = ({ watching, game, ui, actions }) => (
 );
 
 App.propTypes = {
-  watching: React.PropTypes.bool.isRequired,
-  game: React.PropTypes.object.isRequired,
-  ui: React.PropTypes.object.isRequired,
-  actions: React.PropTypes.object.isRequired
+  watching: PropTypes.bool.isRequired,
+  game: PropTypes.object.isRequired,
+  ui: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 export const mapStateToProps = state => ({

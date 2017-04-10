@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const Client = ({ nickname, revealed, vote }) => (
@@ -22,9 +23,9 @@ const Client = ({ nickname, revealed, vote }) => (
 );
 
 Client.propTypes = {
-  nickname: React.PropTypes.string.isRequired,
-  revealed: React.PropTypes.bool,
-  vote: React.PropTypes.string
+  nickname: PropTypes.string.isRequired,
+  revealed: PropTypes.bool,
+  vote: PropTypes.string
 };
 
 export default Client;
