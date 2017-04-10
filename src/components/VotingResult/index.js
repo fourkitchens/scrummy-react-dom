@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import Client from "../Client";
 import { selectText } from "../../lib/util";
@@ -46,11 +47,11 @@ const VotingResult = ({ users, votes, revealed, reveal, reset }) => (
 );
 
 VotingResult.propTypes = {
-  users: React.PropTypes.array.isRequired,
-  votes: React.PropTypes.object.isRequired,
-  revealed: React.PropTypes.bool.isRequired,
-  reveal: React.PropTypes.func.isRequired,
-  reset: React.PropTypes.func.isRequired
+  users: PropTypes.array.isRequired,
+  votes: PropTypes.object.isRequired,
+  revealed: PropTypes.bool.isRequired,
+  reveal: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired
 };
 
 export default VotingResult;

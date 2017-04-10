@@ -3762,7 +3762,7 @@ faye-websocket@~0.11.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.8.1, fbjs@^0.8.4:
+fbjs@^0.8.4, fbjs@^0.8.9:
   version "0.8.9"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.9.tgz#180247fbd347dcc9004517b904f865400a0c8f14"
   dependencies:
@@ -7593,6 +7593,18 @@ promise.prototype.finally@^1.0.1:
   dependencies:
     asap "~2.0.3"
 
+prop-types@15.5.0-alpha.0:
+  version "15.5.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.0-alpha.0.tgz#a342108678256db125eee3d1ae2f889af3531bd7"
+  dependencies:
+    fbjs "^0.8.9"
+
+prop-types@~15.5.0:
+  version "15.5.6"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.6.tgz#797a915b1714b645ebb7c5d6cc690346205bd2aa"
+  dependencies:
+    fbjs "^0.8.9"
+
 proto-list@~1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/proto-list/-/proto-list-1.2.4.tgz#212d5bfe1318306a420f6402b8e26ff39647a849"
@@ -7708,13 +7720,14 @@ react-docgen@^2.12.1:
     node-dir "^0.1.10"
     recast "^0.11.5"
 
-react-dom@^15.1.0:
-  version "15.4.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.2.tgz#015363f05b0a1fd52ae9efdd3a0060d90695208f"
+react-dom@15.5.0:
+  version "15.5.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.5.0.tgz#86a8d6dcde388473815039de3840706e1f28f697"
   dependencies:
-    fbjs "^0.8.1"
+    fbjs "^0.8.9"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+    prop-types "~15.5.0"
 
 react-fuzzy@^0.3.3:
   version "0.3.3"
@@ -7781,13 +7794,14 @@ react-stubber@^1.0.0:
   dependencies:
     babel-runtime "^6.5.0"
 
-react@^15.1.0:
-  version "15.4.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
+react@15.5.0:
+  version "15.5.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.5.0.tgz#1f8e4b492dcfbf77479eb4fdfc48da425002e505"
   dependencies:
-    fbjs "^0.8.4"
+    fbjs "^0.8.9"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+    prop-types "15.5.0-alpha.0"
 
 read-all-stream@^3.0.0:
   version "3.1.0"

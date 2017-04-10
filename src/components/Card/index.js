@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const Card = ({ value, selected, vote }) => (
@@ -8,9 +9,9 @@ const Card = ({ value, selected, vote }) => (
 );
 
 Card.propTypes = {
-  value: React.PropTypes.string.isRequired,
-  selected: React.PropTypes.bool,
-  vote: React.PropTypes.func
+  value: PropTypes.string.isRequired,
+  selected: PropTypes.bool,
+  vote: PropTypes.func
 };
 
 export default Card;
