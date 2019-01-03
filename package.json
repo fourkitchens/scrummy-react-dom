@@ -76,7 +76,7 @@
     "react": "15.5.0",
     "react-dom": "15.5.0",
     "react-redux": "^4.4.5",
-    "reconnecting-websocket": "^3.0.3",
+    "reconnecting-websocket": "^4.1.10",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "sass-toolkit": "^2.10.0",
